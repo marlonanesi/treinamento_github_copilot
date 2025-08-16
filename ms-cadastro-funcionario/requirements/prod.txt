@@ -1,0 +1,7 @@
+# Dependências de Produção
+# Otimizadas para ambiente de produção
+
+-r base.txt
+
+# Performance e Monitoramento
+gunicorn==21.2.0

@@ -1,0 +1,472 @@
+/* GitHub Copilot - Tema Base para Apresentações */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e8f4f8 0%, #d1e7dd 25%, #a7d8ea 50%, #7dd3fc 75%, #bfdbfe 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 180px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: -10px;
+}
+
+.copilot-icon {
+    width: 232px;
+    height: 170px;
+    border-radius: 44px;
+    animation: sway 4s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease;
+    opacity: 0.85;
+    margin-left: -20px;
+    margin-top: 15px;
+}
+
+.copilot-icon:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+@keyframes sway {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-5.6deg);
+    }
+    75% {
+        transform: rotate(5.6deg);
+    }
+}
+
+.logo-text {
+    color: #1e40af;
+    font-size: 26px;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(30, 64, 175, 0.3), 0 4px 16px rgba(59, 130, 246, 0.2);
+    background: linear-gradient(135deg, #60a5fa, #3b82f6, #1e40af);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.camera-area {
+    width: 232px;
+    height: 238px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 114px;
+}
+
+.camera-cutout {
+    width: 232px;
+    height: 238px;
+    background: conic-gradient(
+        from 0deg,
+        #3b82f6 0deg,
+        #60a5fa 72deg,
+        #93c5fd 144deg,
+        #dbeafe 216deg,
+        #3b82f6 288deg,
+        #3b82f6 360deg
+    );
+    border-radius: 50%;
+    box-shadow: 
+        0 8px 32px rgba(30, 64, 175, 0.15),
+        inset 0 2px 4px rgba(148, 163, 184, 0.1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: rotate-gradient 3s linear infinite;
+}
+
+.camera-cutout::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    background: transparent;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.camera-cutout::after {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 180deg,
+        transparent 0deg,
+        rgba(96, 165, 250, 0.6) 45deg,
+        rgba(147, 197, 253, 0.8) 90deg,
+        rgba(96, 165, 250, 0.6) 135deg,
+        transparent 180deg,
+        transparent 360deg
+    );
+    animation: spin-inner 2s linear infinite reverse;
+    z-index: 2;
+}
+
+@keyframes spin-outer {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes spin-inner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes rotate-gradient {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.camera-ring-1 {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border: 6px solid transparent;
+    border-top: 6px solid rgba(96, 165, 250, 0.8);
+    border-right: 6px solid rgba(96, 165, 250, 0.7);
+    border-radius: 50%;
+    animation: spin-outer 1s linear infinite;
+}
+
+.camera-ring-2 {
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    border: 5px solid transparent;
+    border-bottom: 5px solid rgba(147, 197, 253, 0.9);
+    border-left: 5px solid rgba(147, 197, 253, 0.8);
+    border-radius: 50%;
+    animation: spin-inner 0.8s linear infinite reverse;
+}
+
+.camera-center {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, 
+        rgba(59, 130, 246, 0.2) 0%,
+        rgba(59, 130, 246, 0.5) 30%,
+        rgba(30, 64, 175, 0.6) 60%,
+        rgba(30, 64, 175, 0.8) 100%);
+    border-radius: 50%;
+    animation: pulse-center 1.5s ease-in-out infinite;
+    box-shadow: 
+        0 0 40px rgba(59, 130, 246, 0.5),
+        inset 0 0 25px rgba(30, 64, 175, 0.3);
+    border: 3px solid rgba(59, 130, 246, 0.6);
+}
+
+.camera-ring-3 {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border: 4px solid transparent;
+    border-top: 4px solid rgba(59, 130, 246, 0.7);
+    border-bottom: 4px solid rgba(59, 130, 246, 0.5);
+    border-radius: 50%;
+    animation: spin-outer 0.7s linear infinite;
+}
+
+.camera-ring-4 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 3px solid transparent;
+    border-left: 3px solid rgba(96, 165, 250, 1);
+    border-right: 3px solid rgba(96, 165, 250, 0.8);
+    border-radius: 50%;
+    animation: spin-inner 0.5s linear infinite reverse;
+}
+
+.camera-core {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, 
+        rgba(59, 130, 246, 1) 0%,
+        rgba(30, 64, 175, 1) 50%,
+        rgba(30, 64, 175, 1) 100%);
+    border-radius: 50%;
+    animation: pulse-core 1s ease-in-out infinite alternate;
+    box-shadow: 
+        0 0 50px rgba(59, 130, 246, 0.8),
+        inset 0 0 20px rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(147, 197, 253, 1);
+}
+
+@keyframes pulse-core {
+    0% { 
+        transform: scale(0.8);
+        opacity: 0.9;
+    }
+    100% { 
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse-center {
+    0%, 100% { 
+        transform: scale(0.95);
+        opacity: 0.9;
+    }
+    50% { 
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 200px 50px 100px;
+}
+
+.slide-container {
+    width: 100%;
+    max-width: 1200px;
+    background: rgba(248, 250, 252, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(71, 85, 105, 0.15);
+    padding: 60px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.slide-container:hover {
+    transform: translateY(-2px);
+}
+
+.slide-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+    animation: shimmer 4s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.slide {
+    display: none;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+.slide.active {
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slide h1 {
+    font-size: 3.5em;
+    color: #1e40af;
+    margin-bottom: 30px;
+    text-shadow: 0 4px 8px rgba(30, 64, 175, 0.2), 0 2px 4px rgba(59, 130, 246, 0.3);
+    background: linear-gradient(135deg, #1e40af, #3b82f6, #60a5fa, #93c5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+}
+
+.slide h2 {
+    font-size: 2.5em;
+    color: #059669;
+    margin-bottom: 25px;
+    text-shadow: 0 3px 6px rgba(5, 150, 105, 0.2), 0 1px 3px rgba(16, 185, 129, 0.3);
+    background: linear-gradient(135deg, #047857, #059669, #10b981, #34d399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+.slide p {
+    font-size: 1.4em;
+    color: #374151;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.slide ul {
+    text-align: left;
+    display: inline-block;
+    font-size: 1.3em;
+    color: #4b5563;
+    line-height: 1.8;
+    list-style: none;
+}
+
+.slide li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 35px;
+}
+
+.slide li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #2563eb;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-shadow: 0 2px 4px rgba(37, 99, 235, 0.4), 0 0 8px rgba(59, 130, 246, 0.3);
+    background: linear-gradient(45deg, #3b82f6, #2563eb, #1d4ed8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 1px 2px rgba(37, 99, 235, 0.3));
+}
+
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: rgba(30, 64, 175, 0.15);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid rgba(59, 130, 246, 0.2);
+    z-index: 1000;
+}
+
+.footer-text {
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.footer-text .instructor {
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .slide-container {
+        padding: 40px 30px;
+        margin: 20px;
+    }
+    
+    .slide h1 {
+        font-size: 2.5em;
+    }
+    
+    .slide h2 {
+        font-size: 2em;
+    }
+    
+    .slide p {
+        font-size: 1.2em;
+    }
+    
+    .camera-area {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .camera-cutout {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: conic-gradient(
+            from 0deg,
+            #3b82f6 0deg,
+            #60a5fa 72deg,
+            #93c5fd 144deg,
+            #dbeafe 216deg,
+            #3b82f6 288deg,
+            #3b82f6 360deg
+        );
+    }
+    
+    .camera-cutout::before {
+        top: 8px;
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
+    }
+    
+    .camera-cutout::after {
+        top: 12px;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+    }
+    
+    .header {
+        padding: 0 20px;
+    }
+}

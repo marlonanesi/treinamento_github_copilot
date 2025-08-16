@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construção Modular com Copilot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="icone.png" alt="GitHub Copilot" class="copilot-icon">
+            <div class="logo-text">GitHub Copilot - Construção Modular</div>
+        </div>
+        <div class="camera-area">
+            <div class="camera-cutout"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="slide-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <h1>Construção Modular com Copilot</h1>
+                <h2>Entregar mais valor dividindo o problema em módulos pequenos e testáveis</h2>
+                <p>Dica: Use prompts específicos por módulo. Evite “fazer tudo de uma vez”.</p>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <h2>Por que modular com IA?</h2>
+                <ul>
+                    <li>Reduz ambiguidade para o Copilot com contexto menor e claro</li>
+                    <li>Facilita testes, rollback e versionamento</li>
+                    <li>Reuso entre serviços e times</li>
+                    <li>Entrega incremental com feedback rápido</li>
+                    <li>Fronteiras bem definidas → menos dependências ocultas</li>
+                    <li>Melhor paralelização entre devs e entre prompts</li>
+                    <li>Escalabilidade técnica e organizacional</li>
+                    <li>Observabilidade e métricas por módulo</li>
+                </ul>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <h2>Princípios de Arquitetura Modular</h2>
+                <ul>
+                    <li>Coesão alta, acoplamento baixo</li>
+                    <li>Interfaces/contratos explícitos (DTOs, Schemas, Ports)</li>
+                    <li>Separação de preocupações: domain, application, infra, presentation</li>
+                    <li>Domínio primeiro: regras vivem no core, não na borda</li>
+                    <li>Evolução segura: feature flags, migrações, compatibilidade</li>
+                </ul>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <h2>Camadas e Fronteiras</h2>
+                <ul>
+                    <li><strong>Domínio:</strong> Entidades, regras, exceções. Sem dependências externas.</li>
+                    <li><strong>Aplicação:</strong> Use cases, orquestração, transações.</li>
+                    <li><strong>Infra:</strong> Repositórios, DB models, integrações.</li>
+                    <li><strong>Apresentação:</strong> APIs, Schemas, validações e mapeamento de erros.</li>
+                </ul>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="slide">
+                <h2>Como o Copilot ajuda mais em módulos</h2>
+                <ul>
+                    <li>Contexto curto = sugestões mais precisas e consistentes</li>
+                    <li>Prompts focados em um arquivo/classe reduzem ruído</li>
+                    <li>Testes por módulo viram “targets” claros no prompt</li>
+                    <li>Iterações rápidas: corrija só o módulo que falhou</li>
+                </ul>
+            </div>
+
+            <!-- Slide 6 -->
+            <div class="slide">
+                <h2>Template de Prompt (por módulo)</h2>
+                <ul>
+                    <li><strong>Objetivo:</strong> [O que o módulo deve fazer]</li>
+                    <li><strong>Entradas/Saídas:</strong> [DTOs/Schemas/Contratos]</li>
+                    <li><strong>Regras:</strong> [Regras de negócio e validações]</li>
+                    <li><strong>Arquivos-alvo:</strong> [Liste arquivos a alterar]</li>
+                    <li><strong>Tests/Done:</strong> [Cenários felizes/tristes + coberturas]</li>
+                    <li><strong>Erros:</strong> [Mapeamentos de exceções e HTTP]</li>
+                </ul>
+                <p>Inclua métricas: cobertura mínima, lint, tipagem.</p>
+            </div>
+
+            <!-- Slide 7 -->
+            <div class="slide">
+                <h2>Decomposição prática de uma feature</h2>
+                <ul>
+                    <li>1) Defina o “core” (entidade/método de domínio)</li>
+                    <li>2) Caso de uso que orquestra</li>
+                    <li>3) Persistência/Model mapper</li>
+                    <li>4) API e Schemas</li>
+                    <li>5) Observabilidade (logs/metrics)</li>
+                    <li>6) Testes por camada com alvos de cobertura</li>
+                </ul>
+            </div>
+
+
+            <!-- Slide 9 -->
+            <div class="slide">
+                <h2>Métricas e “targets” por módulo</h2>
+                <ul>
+                    <li>Cobertura mínima por camada (ex.: Domínio ≥95%)</li>
+                    <li>Lint/format sem violações</li>
+                    <li>Contract tests em APIs/Repos</li>
+                    <li>Tempo de build/teste e flakiness</li>
+                </ul>
+            </div>
+
+            <!-- Slide 10 -->
+            <div class="slide">
+                <h2>Anti-padrões a evitar</h2>
+                <ul>
+                    <li>“Big bang” em um único PR</li>
+                    <li>Prompts vagos, sem arquivos-alvo e critérios de aceite</li>
+                    <li>Acoplamento entre camadas por “atalhos”</li>
+                    <li>Regras de negócio na API em vez do domínio</li>
+                </ul>
+            </div>
+
+
+            <!-- Slide 12 -->
+            <div class="slide">
+                <h2>Resumo</h2>
+                <ul>
+                    <li>Quebre em módulos com fronteiras claras</li>
+                    <li>Prompts específicos por arquivo/camada</li>
+                    <li>Done = testes + métricas + contrato</li>
+                    <li>Itere pequeno, entregue sempre</li>
+                </ul>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else {
+                showSlide(0); // Volta para o primeiro slide
+            }
+        }
+
+        // Click navigation
+        document.body.addEventListener('click', nextSlide);
+
+        // Keyboard navigation (mantém para facilidade)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                } else {
+                    showSlide(totalSlides - 1); // Vai para o último slide
+                }
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

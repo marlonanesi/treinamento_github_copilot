@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como funciona GitHub Copilot e GitHub Copilot Chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="icone.png" alt="GitHub Copilot" class="copilot-icon">
+            <div class="logo-text">GitHub Copilot - Como Funciona Copilot e Copilot Chat</div>
+        </div>
+        <div class="camera-area">
+            <div class="camera-cutout"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="slide-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <h1>Como Funciona o GitHub Copilot</h1>
+                <h2>E GitHub Copilot Chat</h2>
+                <p>Entendendo a arquitetura e funcionamento das duas ferramentas de IA para desenvolvimento</p>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <h2>GitHub Copilot - Arquitetura</h2>
+                <ul>
+                    <li><strong>Modelo:</strong> OpenAI Codex (especializado em código)</li>
+                    <li><strong>Treinamento:</strong> Bilhões de linhas de código público</li>
+                    <li><strong>Funcionamento:</strong> Sugestões inline em tempo real</li>
+                    <li><strong>Contexto:</strong> Analisa código atual + arquivos abertos</li>
+                </ul>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <h2>GitHub Copilot Chat - Arquitetura</h2>
+                <ul>
+                    <li><strong>Modelos:</strong> GPT-4, Claude, o1-preview (dentre outros)</li>
+                    <li><strong>Interface:</strong> Chat conversacional integrado ao VS Code</li>
+                    <li><strong>Funcionamento:</strong> Diálogo interativo com contexto de projeto</li>
+                    <li><strong>Capacidades:</strong> Explicações, refatoração, debugging</li>
+                </ul>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <h2>Comparação: Copilot vs Copilot Chat</h2>
+                <ul>
+                    <li><strong>Copilot:</strong> Sugestões automáticas baseadas no que você está digitando</li>
+                    <li><strong>Copilot Chat:</strong> Implementação direcionada - "quero fazer X"</li>
+                    <li><strong>Na prática:</strong> Chat é mais preciso para tarefas específicas</li>
+                    <li><strong>Uso real:</strong> Chat para implementar, Copilot para completar detalhes</li>
+                </ul>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="slide">
+                <h2>Interação Real Entre as Ferramentas</h2>
+                <p>Como usar ambos de forma complementar</p>
+                <ul>
+                    <li><strong>Inicie no Chat:</strong> "Criar API REST para usuários"</li>
+                    <li><strong>Implemente com Chat:</strong> Código estrutural completo</li>
+                    <li><strong>Refine com Copilot:</strong> Autocompletar variáveis, imports</li>
+                    <li><strong>Volte ao Chat:</strong> Ajustes, testes, documentação</li>
+                    <li><strong>Experimente:</strong> Não há regra fixa - adapte ao seu workflow</li>
+                </ul>
+            </div>
+
+            <!-- Slide 6 -->
+            <div class="slide">
+                <h2>Fluxo de Funcionamento</h2>
+                <p>Como as duas ferramentas processam e respondem</p>
+                <ul>
+                    <li><strong>1. Captura:</strong> Ambos analisam contexto do código atual</li>
+                    <li><strong>2. Processamento:</strong> Envio seguro para modelos na nuvem</li>
+                    <li><strong>3. Geração:</strong> IA cria resposta baseada no contexto</li>
+                    <li><strong>4. Retorno:</strong> Sugestão inline (Copilot) ou resposta (Chat)</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else {
+                showSlide(0); // Volta para o primeiro slide
+            }
+        }
+
+        // Click navigation
+        document.body.addEventListener('click', nextSlide);
+
+        // Keyboard navigation (mantém para facilidade)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                } else {
+                    showSlide(totalSlides - 1); // Vai para o último slide
+                }
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+# Link para dependências base
+-r requirements/base.txt

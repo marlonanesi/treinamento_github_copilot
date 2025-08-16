@@ -1,0 +1,22 @@
+# Dependências Base do Microserviço de Funcionários
+# Essenciais para execução da aplicação
+
+# Framework Web
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# Validação de Dados
+pydantic==2.5.0
+pydantic-settings==2.1.0
+email-validator==2.1.0
+
+# Banco de Dados MongoDB
+motor==3.3.2
+pymongo==4.6.0
+
+# Variáveis de Ambiente
+python-dotenv==1.0.0
+
+# Utilitários
+python-multipart==0.0.6
+psutil==5.9.6

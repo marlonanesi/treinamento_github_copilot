@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copilot em Múltiplos Papéis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="icone.png" alt="GitHub Copilot" class="copilot-icon">
+            <div class="logo-text">GitHub Copilot - Múltiplos Papéis</div>
+        </div>
+        <div class="camera-area">
+            <div class="camera-cutout"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="slide-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <h1>Copilot em Múltiplos Papéis</h1>
+                <h2>Como alternar personas para maximizar resultados no desenvolvimento</h2>
+                <p>Use personas claras: Dev, Arquiteto, SM, PO, QA, Frontend, Backend, UI/UX.</p>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <h2>Por que alternar papéis?</h2>
+                <ul>
+                    <li>Refinamentos focados (negócio, técnico, qualidade, UX)</li>
+                    <li>Clareza de entregáveis e critérios de aceite</li>
+                    <li>Handoffs previsíveis entre módulos e times</li>
+                    <li>Prompts menores e objetivos → menos ruído, mais precisão</li>
+                </ul>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <h2>Backend Developer (API/Domain)</h2>
+                <p><strong>Propósito:</strong> Regras de negócio, casos de uso, endpoints, performance.</p>
+                <p><strong>Entregáveis:</strong> Use case, schema, rota, logs, testes unitários.</p>
+                <pre><code>Papel: Você é um dev backend sênior em FastAPI.
+Objetivo: Implementar POST /projetos com validações e repositório mockado.
+Regras: Arquitetura em camadas, Pydantic estrito, logs estruturados.
+Done: 90%+ cobertura no domínio e use case, 201/400/422 mapeados.</code></pre>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <h2>Frontend Developer (UI/Integração)</h2>
+                <p><strong>Propósito:</strong> Componentes, estados, acessibilidade e integração com API.</p>
+                <p><strong>Entregáveis:</strong> Tela, estados de loading/erro, testes e2e/unit.</p>
+                <pre><code>Papel: Você é dev frontend React sênior.
+Objetivo: Tela de cadastro de projeto com validação e chamada à API.
+Regras: A11y, design tokens, testes RTL e mock de fetch.
+Done: Form funcional, testes passando, empty/error states cobertos.</code></pre>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="slide">
+                <h2>Arquiteto de Software</h2>
+                <p><strong>Propósito:</strong> Fronteiras, padrões, decisões (ADR) e diagramas.</p>
+                <p><strong>Entregáveis:</strong> C4 (nivel 2 em texto), ADR, guidelines de camadas.</p>
+                <pre><code>Papel: Arquiteto de software.
+Objetivo: Definir fronteiras (domain/app/infra/presentation) e integrações.
+Regras: Hexagonal, DTOs estáveis, idempotência nas integrações.
+Done: ADR com trade-offs + diagrama textual + checklist de qualidade.</code></pre>
+            </div>
+
+            <!-- Slide 6 -->
+            <div class="slide">
+                <h2>Product Owner (Negócio)</h2>
+                <p><strong>Propósito:</strong> Refinamento de negócio, valor, critérios de aceite.</p>
+                <p><strong>Entregáveis:</strong> User stories, critérios Gherkin, métricas de sucesso.</p>
+                <pre><code>Papel: Você é PO.
+Objetivo: Refinar cadastro de projeto com personas, escopo e KPIs.
+Regras: Histórias INVEST, critérios de aceite em Gherkin.
+Done: Backlog priorizado, histórias claras, KPIs definidos.</code></pre>
+            </div>
+
+            <!-- Slide 7 -->
+            <div class="slide">
+                <h2>Scrum Master (Fluxo/Entrega)</h2>
+                <p><strong>Propósito:</strong> Facilitar planejamento, remover impedimentos, cadência.</p>
+                <p><strong>Entregáveis:</strong> Quebra de tarefas, dependências, riscos e Definition of Done.</p>
+                <pre><code>Papel: Scrum Master.
+Objetivo: Planejar sprint para “Cadastro de Projeto”.
+Saída: WBS, dependências, riscos, DoD (tests, lint, docs).
+Done: Plano visível, riscos mitigados, DoD acordado.</code></pre>
+            </div>
+
+            <!-- Slide 8 -->
+            <div class="slide">
+                <h2>QA / Tester</h2>
+                <p><strong>Propósito:</strong> Estratégia de testes, pirâmide, casos e automação.</p>
+                <p><strong>Entregáveis:</strong> Plano de testes, cenários Gherkin, dados de teste, cobertura.</p>
+                <pre><code>Papel: QA.
+Objetivo: Definir testes do cadastro de projeto.
+Regras: Pirâmide (unit&gt;api&gt;e2e), dados sintéticos, contratos estáveis.
+Done: Casos mapeados, automação CI, métricas: cobertura e flakiness.</code></pre>
+            </div>
+
+            <!-- Slide 9 -->
+            <div class="slide">
+                <h2>UI/UX Designer</h2>
+                <p><strong>Propósito:</strong> Jornada do usuário, fluxos, wireframes e heurísticas.</p>
+                <p><strong>Entregáveis:</strong> User journey, fluxo, wireframe checklist, copy.</p>
+                <pre><code>Papel: Designer UI/UX.
+Objetivo: Mapear jornada para cadastro e visualização de projetos.
+Saída: Fluxo (feliz/triste), rótulos, estados vazios, feedbacks.
+Done: Fluxo validado, acessibilidade e heurísticas de Nielsen atendidas.</code></pre>
+            </div>
+
+            <!-- Slide 10 -->
+            <div class="slide">
+                <h2>Fluxograma + Mapa do Usuário (texto)</h2>
+                <pre><code>Fluxo (simplificado)
+Usuário → [Abrir Tela] → [Preencher Form] → [Validar] → [Enviar API]
+   ↳ erro validação → [Feedback Campo] → [Corrigir] → [Validar]
+   ↳ erro API       → [Mensagem Erro] → [Tentativa Novamente]
+   ↳ sucesso        → [Toast Sucesso] → [Navegar Detalhe]
+
+Mapa do Usuário
+Persona: Gerente
+Intenção: Cadastrar novo projeto
+Passos: Acessa &gt; Preenche &gt; Valida &gt; Envia &gt; Confere
+Dores: Campos confusos, erros tardios
+Ganho: Feedback imediato e salvamento rápido</code></pre>
+            </div>
+
+            <!-- Slide 11 -->
+            <div class="slide">
+                <h2>Orquestração de Prompts (Sequência)</h2>
+                <ul>
+                    <li>PO → histórias e critérios</li>
+                    <li>Arquiteto → fronteiras e ADR</li>
+                    <li>UX → jornada/fluxo/wireframe</li>
+                    <li>Backend → domínio/API</li>
+                    <li>Frontend → UI/integração</li>
+                    <li>QA → casos e automação</li>
+                    <li>SM → plano, riscos, DoD</li>
+                </ul>
+                <p>Há handoffs claros; cada saída vira entrada do próximo papel.</p>
+            </div>
+
+            <!-- Slide 12 -->
+            <div class="slide">
+                <h2>Resumo</h2>
+                <ul>
+                    <li>Defina persona, propósito e entregáveis por prompt</li>
+                    <li>Use critérios de aceite e Done verificáveis</li>
+                    <li>Encadeie papéis para reduzir retrabalho</li>
+                    <li>Prompts menores, resultados melhores</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else {
+                showSlide(0); // Volta para o primeiro slide
+            }
+        }
+
+        // Click navigation
+        document.body.addEventListener('click', nextSlide);
+
+        // Keyboard navigation (mantém para facilidade)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                } else {
+                    showSlide(totalSlides - 1); // Vai para o último slide
+                }
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

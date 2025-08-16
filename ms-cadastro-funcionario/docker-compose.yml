@@ -1,0 +1,44 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGODB_URL=mongodb://mongodb:27017
+      - DATABASE_NAME=funcionarios_db
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - API_VERSION=v1
+      - ENVIRONMENT=development
+      - LOG_LEVEL=INFO
+    volumes:
+      # Apenas código-fonte para hot reload
+      - ./app:/app/app
+      - ./logs:/app/logs
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:7.0
+    container_name: funcionarios-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      # Desabilita autenticação para desenvolvimento
+      - MONGO_INITDB_DATABASE=funcionarios_db
+    command: ["mongod", "--noauth", "--bind_ip_all"]
+    volumes:
+      - mongodb_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+
+volumes:
+  mongodb_data:
+    driver: local

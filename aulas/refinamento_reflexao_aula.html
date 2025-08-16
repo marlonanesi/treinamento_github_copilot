@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Reflexão: Ciclo do Dev vs Copilot</title>
+<style>
+:root {
+  --bg: #0b1020; --fg: #e6eef8; --muted:#9fb3c8;
+  --panel:#121a35; --border:#223056; --accent:#7dd3fc;
+  --warn:#fca5a5; --ok:#86efac;
+}
+* { box-sizing: border-box }
+html, body { height:100% }
+body {
+  margin:0; color:var(--fg);
+  font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(1200px 800px at 70% -20%, #192040 0%, var(--bg) 50%);
+}
+.deck { position:relative; height:100vh; overflow:hidden }
+.slide {
+  position:absolute; inset:0; padding:48px; display:grid;
+  grid-template-rows: auto 1fr auto; gap:24px;
+  transform: translateX(100%); opacity:0;
+  transition: transform .6s cubic-bezier(.2,.8,.2,1), opacity .6s;
+}
+.slide.active { transform: translateX(0); opacity:1 }
+.slide.prev { transform: translateX(-100%); opacity:0 }
+h1, h2 { margin:0 0 12px 0 }
+.subtitle { color:var(--muted) }
+.grid { display:grid; gap:16px }
+.grid.cols-2 { grid-template-columns: 1fr 1fr }
+.panel {
+  background:var(--panel); border:1px solid var(--border);
+  border-radius:12px; padding:16px;
+}
+.flow { display:flex; gap:12px; align-items:center; flex-wrap:wrap }
+.step {
+  position:relative; padding:10px 14px; border-radius:10px;
+  background:#0f1530; border:1px solid var(--border); color:var(--fg);
+  filter:saturate(1.1);
+  animation: glow 7s linear infinite; animation-delay: var(--d, 0s);
+}
+.step.bad { background:#1a0f12; border-color:#472b2b }
+.step.good { background:#0f1a14; border-color:#1f3d2c }
+.arrow { color:var(--muted); opacity:.75 }
+.dot { width:10px; height:10px; border-radius:50%; margin-right:6px; display:inline-block; vertical-align:middle }
+.dot.bad { background:var(--warn) }
+.dot.good { background:var(--ok) }
+@keyframes glow {
+  0%   { box-shadow: 0 0 0 0 rgba(125,211,252,0) }
+  3%   { box-shadow: 0 0 0 3px rgba(125,211,252,.25) }
+  10%  { box-shadow: 0 0 0 0 rgba(125,211,252,0) }
+  100% { box-shadow: 0 0 0 0 rgba(125,211,252,0) }
+}
+.bad .step { animation-duration: 6.5s }
+.good .step { animation-duration: 8s }
+
+.kbd { background:#111827; border:1px solid #374151; padding:2px 6px; border-radius:6px; font-size:.9rem }
+.footer { color:var(--muted) }
+
+.appear { opacity:0; transform: translateY(8px); animation: fadeUp .7s ease forwards; animation-delay: var(--d, 0s) }
+@keyframes fadeUp { to { opacity:1; transform: translateY(0) } }
+
+.code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background:#0d1328; border:1px solid #1e2a4a; border-radius:10px;
+  padding:12px; white-space:pre-wrap; color:#dbeafe;
+}
+.hr { height:1px; background:linear-gradient(90deg, transparent, #2a3b73, transparent); margin:8px 0 }
+
+.hint {
+  position:absolute; bottom:14px; right:18px; color:var(--muted);
+  font-size:.95rem; opacity:.85;
+}
+.brand { position:absolute; top:14px; right:18px; color:var(--muted); font-size:.9rem }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+  <div class="brand">Use ← → ou clique</div>
+
+  <!-- Slide 1 -->
+  <section class="slide active" aria-label="Ciclos">
+    <header>
+      <h1>Do hábito ao método</h1>
+      <div class="subtitle">Comparativo: ciclo do dev comum vs ciclo com Copilot</div>
+    </header>
+
+    <main class="grid cols-2">
+      <div class="panel bad">
+        <h2>Ciclo do dev comum</h2>
+        <div class="flow">
+          <div class="step" style="--d:.0s"><span class="dot bad"></span>Abrir o editor</div>
+          <div class="arrow">→</div>
+          <div class="step" style="--d:.9s"><span class="dot bad"></span>Começar a codar</div>
+          <div class="arrow">→</div>
+          <div class="step bad" style="--d:1.8s"><span class="dot bad"></span>Parar e pensar só quando trava</div>
+        </div>
+        <div class="hr"></div>
+        <div class="subtitle">Risco: retrabalho, acoplamento acidental, perda de tempo em tentativas.</div>
+      </div>
+
+      <div class="panel good">
+        <h2>Ciclo com Copilot</h2>
+        <div class="flow">
+          <div class="step good" style="--d:.0s"><span class="dot good"></span>Pensar primeiro</div>
+          <div class="arrow">→</div>
+          <div class="step good" style="--d:.8s"><span class="dot good"></span>Refinar</div>
+          <div class="arrow">→</div>
+          <div class="step good" style="--d:1.6s"><span class="dot good"></span>Dar contexto</div>
+          <div class="arrow">→</div>
+          <div class="step good" style="--d:2.4s"><span class="dot good"></span>Pedir ajuda</div>
+          <div class="arrow">→</div>
+          <div class="step good" style="--d:3.2s"><span class="dot good"></span>Validar</div>
+          <div class="arrow">→</div>
+          <div class="step good" style="--d:4.0s"><span class="dot good"></span>Iterar</div>
+        </div>
+        <div class="hr"></div>
+        <div class="subtitle">Resultado: menos retrabalho, melhor manutenibilidade e sugestões mais úteis.</div>
+      </div>
+    </main>
+
+    <footer class="footer">Dica: a ordem muda o resultado. Primeiro desenho mental, depois código.</footer>
+    <div class="hint"><span class="kbd">←</span> <span class="kbd">→</span> ou clique para navegar</div>
+  </section>
+
+  <!-- Slide 2 -->
+  <section class="slide" aria-label="Prompt e Quebra">
+    <header>
+      <h1>O “prompt” começa antes de digitar</h1>
+      <div class="subtitle">Ele nasce quando estruturamos mentalmente o que queremos alcançar.</div>
+    </header>
+
+    <main class="grid" style="align-content:start">
+      <div class="panel appear" style="--d:.1s">
+        <h2>Ideia-chave</h2>
+        <div>O prompt não começa em <code># faça X</code>, mas na clareza de objetivo, restrições e passos.</div>
+      </div>
+
+      <div class="grid cols-2">
+        <div class="panel appear" style="--d:.25s">
+          <h2>Quebra de atividades</h2>
+          <div class="flow" style="margin-top:6px">
+            <div class="step good" style="--d:.2s">Atividade macro</div>
+            <div class="arrow">→</div>
+            <div class="step good" style="--d:.5s">Subtarefas</div>
+            <div class="arrow">→</div>
+            <div class="step good" style="--d:.8s">Entregáveis claros</div>
+          </div>
+          <ul style="margin-top:10px">
+            <li>Guia o Copilot como um briefing de projeto.</li>
+            <li>Reduz ambiguidade e aumenta a qualidade do código sugerido.</li>
+          </ul>
+        </div>
+
+        <div class="panel appear" style="--d:.35s">
+          <h2>Exemplo rápido</h2>
+          <div class="code">
+Contexto: ms-cadastro-funcionario (FastAPI, Pydantic, Motor/Mongo).
+Objetivo: preparar base testável do microserviço (sem testes).
+Subtarefas: estrutura de pastas, modelos, repositório, routers, DI.
+Entregáveis: arquivos criados + assinaturas públicas + critérios de pronto.
+Restrições: nomenclatura consistente, camadas desacopladas.
+Passos: 1) setup 2) domain 3) infra 4) presentation 5) wiring.
+          </div>
+        </div>
+      </div>
+
+      <div class="panel appear" style="--d:.5s">
+        <h2>Template de “briefing” para o Copilot</h2>
+        <div class="code">
+Quero: [resultado concreto].
+Contexto: [stack, módulos, padrões].
+Escopo: [arquivos/camadas a tocar].
+Critérios de pronto: [o que verifica sucesso].
+Entregas: [lista objetiva de artefatos].
+Passos: [sequência curta e ordenada].
+Restrições: [nomenclatura, DI, separação de camadas].
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">Pense como arquiteto, escreva como especificador, depois codifique.</footer>
+    <div class="hint"><span class="kbd">←</span> <span class="kbd">→</span> ou clique para navegar</div>
+  </section>
+</div>
+
+<script>
+(function(){
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let idx = 0;
+  function show(n){
+    idx = Math.max(0, Math.min(n, slides.length - 1));
+    slides.forEach((s, i) => {
+      s.classList.remove('active','prev');
+      if (i === idx) s.classList.add('active');
+      else if (i < idx) s.classList.add('prev');
+    });
+  }
+  function next(loop=false){
+    if (idx < slides.length - 1) show(idx + 1);
+    else if (loop) show(0);
+  }
+  function prev(){ if (idx > 0) show(idx - 1) }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+  document.addEventListener('click', () => next(true));
+  show(0);
+})();
+</script>
+</body>
+</html>

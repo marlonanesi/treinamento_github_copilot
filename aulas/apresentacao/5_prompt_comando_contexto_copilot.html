@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt, Comando e Contexto no GitHub Copilot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="icone.png" alt="GitHub Copilot" class="copilot-icon">
+            <div class="logo-text">GitHub Copilot - Prompt, Comando e Contexto</div>
+        </div>
+        <div class="camera-area">
+            <div class="camera-cutout"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="slide-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <h1>Prompt, Comando e Contexto</h1>
+                <h2>Como se comunicar efetivamente com o GitHub Copilot</h2>
+                <p>Assim como falamos diferente com cada pessoa, precisamos aprender a "falar" com a IA</p>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <h2>A Arte da Comunicação</h2>
+                <ul>
+                    <li><strong>Com sua mãe:</strong> "Oi mãe, como você está?"</li>
+                    <li><strong>Com seu chefe:</strong> "Bom dia, Sr. Silva. Gostaria de discutir o projeto"</li>
+                    <li><strong>Com seu amigo:</strong> "E aí, cara! Bora pro happy hour?"</li>
+                    <li><strong>Com o Copilot:</strong> Também precisa do tom e contexto certo!</li>
+                </ul>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <h2>O que é um Prompt Efetivo?</h2>
+                <ul>
+                    <li><strong>Claro:</strong> "Criar função que valida email" vs "fazer validação"</li>
+                    <li><strong>Específico:</strong> "Para API REST, retornar true/false"</li>
+                    <li><strong>Contextual:</strong> "Usando regex padrão brasileiro"</li>
+                    <li><strong>Completo:</strong> "Com tratamento de erro e documentação"</li>
+                </ul>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <h2>Comandos e Boas Práticas</h2>
+                <ul>
+                    <li><strong>Use comandos diretos:</strong> /explain, /fix, /tests</li>
+                    <li><strong>Seja imperativo:</strong> "Refatore essa função" não "Você poderia..."</li>
+                    <li><strong>Dê exemplos:</strong> "Como esta função: getUserById(123)"</li>
+                    <li><strong>Especifique tecnologia:</strong> "Em TypeScript usando Express"</li>
+                </ul>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="slide">
+                <h2>Estratégias Avançadas de Contexto</h2>
+                <p>Maximizando a precisão das respostas</p>
+                <ul>
+                    <li><strong>Contexto imediato:</strong> Selecione código relacionado antes do prompt</li>
+                    <li><strong>Histórico relevante:</strong> Referencie funções similares no projeto</li>
+                    <li><strong>Constraintes claros:</strong> "Sem usar bibliotecas externas"</li>
+                    <li><strong>Iteração:</strong> Refine o prompt baseado na resposta anterior</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else {
+                showSlide(0); // Volta para o primeiro slide
+            }
+        }
+
+        // Click navigation
+        document.body.addEventListener('click', nextSlide);
+
+        // Keyboard navigation (mantém para facilidade)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                } else {
+                    showSlide(totalSlides - 1); // Vai para o último slide
+                }
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

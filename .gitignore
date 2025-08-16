@@ -1,0 +1,50 @@
+# --- Sistema/OS ---
+.DS_Store
+Thumbs.db
+
+# --- VS Code ---
+.vscode/
+.history/
+*.code-workspace
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pkl
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+.python-version
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.cache/
+
+# --- Logs ---
+logs/
+*.log
+
+# --- Envs/Secrets ---
+.env
+.env.*
+*.env
+
+# --- Node/Front (caso use em materiais) ---
+node_modules/
+dist/
+build/
+
+# --- Docker ---
+**/docker-data/
+**/docker/*.pid
+
+# --- OS temporários ---
+~$*
+*.tmp
+*.swp
+*.swo

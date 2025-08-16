@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entendendo melhor a Janela de Contexto - GitHub Copilot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="icone.png" alt="GitHub Copilot" class="copilot-icon">
+            <div class="logo-text">GitHub Copilot - Entendendo a Janela de Contexto</div>
+        </div>
+        <div class="camera-area">
+            <div class="camera-cutout"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="slide-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <h1>Entendendo a Janela de Contexto</h1>
+                <h2>Context Window no GitHub Copilot</h2>
+                <p>Como maximizar a eficiência das sugestões através do contexto adequado</p>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <h2>O que é a Janela de Contexto?</h2>
+                <ul>
+                    <li>Quantidade limitada de código que o Copilot consegue "ver"</li>
+                    <li>Inclui: arquivo atual, arquivos abertos, imports e dependências</li>
+                    <li>Aproximadamente 8.000 tokens (~6.000 palavras)</li>
+                    <li><strong>Impacto:</strong> Determina a qualidade das sugestões</li>
+                </ul>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <h2>Como o Contexto Impacta as Tarefas</h2>
+                <ul>
+                    <li><strong>Funções complexas:</strong> Contexto insuficiente = sugestões genéricas</li>
+                    <li><strong>APIs específicas:</strong> Sem imports visíveis = métodos incorretos</li>
+                    <li><strong>Padrões do projeto:</strong> Falta de exemplos = estilo inconsistente</li>
+                    <li><strong>Tipos customizados:</strong> Definições distantes = erros de tipagem</li>
+                </ul>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <h2>Estratégias para Melhor Uso do Contexto</h2>
+                <ul>
+                    <li><strong>Mantenha arquivos relacionados abertos:</strong> Interfaces, tipos, constantes</li>
+                    <li><strong>Coloque exemplos próximos:</strong> Funções similares no mesmo arquivo</li>
+                    <li><strong>Use comentários descritivos:</strong> Explique a intenção da função</li>
+                    <li><strong>Imports organizados:</strong> Mantenha dependências visíveis no topo</li>
+                    <li><strong>Engenharia de prompt:</strong> Como nos comunicamos "instruções" para o Copilot</li>
+                </ul>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="slide">
+                <h2>Técnicas Avançadas de Contexto</h2>
+                <p>Maximizando a eficiência do GitHub Copilot</p>
+                <ul>
+                    <li><strong>Nomeação clara:</strong> Variáveis e funções autoexplicativas</li>
+                    <li><strong>Estrutura modular:</strong> Arquivos pequenos e focados</li>
+                    <li><strong>Documentação inline:</strong> JSDoc, docstrings para APIs</li>
+                    <li><strong>Padrões consistentes:</strong> Convenções de código uniformes</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else {
+                showSlide(0); // Volta para o primeiro slide
+            }
+        }
+
+        // Click navigation
+        document.body.addEventListener('click', nextSlide);
+
+        // Keyboard navigation (mantém para facilidade)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                } else {
+                    showSlide(totalSlides - 1); // Vai para o último slide
+                }
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

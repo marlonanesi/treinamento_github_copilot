@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLMs e GitHub Copilot - Como Tudo Se Conecta</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="icone.png" alt="GitHub Copilot" class="copilot-icon">
+            <div class="logo-text">GitHub Copilot - LLMs e Como Tudo Se Conecta</div>
+        </div>
+        <div class="camera-area">
+            <div class="camera-cutout"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="slide-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <h1>LLMs e GitHub Copilot</h1>
+                <h2>Como Tudo Se Conecta</h2>
+                <p>Uma introdução aos Large Language Models e como o GitHub Copilot revoluciona o desenvolvimento de software</p>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <h2>O que são Large Language Models (LLMs)?</h2>
+                <ul>
+                    <li>Modelos de IA treinados em vastos volumes de texto</li>
+                    <li>Bilhões de parâmetros para compreender linguagem natural</li>
+                    <li>Capacidade de generalização e aprendizado contextual</li>
+                    <li>Exemplos: GPT-4, Claude, Gemini</li>
+                </ul>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <h2>Como os LLMs Funcionam no Código</h2>
+                <ul>
+                    <li>Analisam padrões em milhões de repositórios</li>
+                    <li>Compreendem contexto e sintaxe de programação</li>
+                    <li>Reconhecem boas práticas e convenções</li>
+                    <li>Geram código contextualmente relevante</li>
+                </ul>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <h2>GitHub Copilot: LLMs em Ação</h2>
+                <ul>
+                    <li><strong>Tecnologia:</strong> Baseado em modelos OpenAI Codex</li>
+                    <li><strong>Treinamento:</strong> Bilhões de linhas de código público</li>
+                    <li><strong>Benefícios:</strong> Aceleração e qualidade no desenvolvimento</li>
+                    <li><strong>Aplicação:</strong> Sugestões em tempo real contextualmente relevantes</li>
+                </ul>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="slide">
+                <h2>O Impacto dos LLMs no Desenvolvimento</h2>
+                <p>Como essa tecnologia está transformando a programação</p>
+                <ul>
+                    <li>Democratização da programação para mais pessoas</li>
+                    <li>Foco em problemas complexos ao invés de sintaxe</li>
+                    <li>Maior produtividade e redução de bugs</li>
+                    <li>Aprendizado contínuo de melhores práticas</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else {
+                showSlide(0); // Volta para o primeiro slide
+            }
+        }
+
+        // Click navigation
+        document.body.addEventListener('click', nextSlide);
+
+        // Keyboard navigation (mantém para facilidade)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                } else {
+                    showSlide(totalSlides - 1); // Vai para o último slide
+                }
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+# Dependências de Desenvolvimento
+# Incluem ferramentas para desenvolvimento, testes e qualidade de código
+
+-r base.txt
+
+# Testes
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+httpx==0.25.2
+
+# Qualidade de Código
+black==23.12.0
+isort==5.13.2
+flake8==6.1.0
+mypy==1.7.1
+
+# Desenvolvimento
+pre-commit==3.6.0

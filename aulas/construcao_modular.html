@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aula: Construção Modular com Copilot</title>
+  <style>
+    :root {
+      --bg1: #0f172a; /* slate-900 */
+      --bg2: #1f2937; /* gray-800 */
+      --acc1: #22d3ee; /* cyan-400 */
+      --acc2: #a78bfa; /* violet-400 */
+      --acc3: #34d399; /* emerald-400 */
+      --text: #f8fafc; /* slate-50 */
+      --muted: #cbd5e1; /* slate-300 */
+      --shadow: 0 20px 40px rgba(0,0,0,0.25);
+      --radius: 14px;
+      --slide-w: min(1100px, 92vw);
+      --slide-h: min(660px, 84vh);
+      --transition: 380ms cubic-bezier(.2,.8,.2,1);
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(167,139,250,0.25), transparent 60%),
+                  radial-gradient(1000px 500px at 0% 100%, rgba(34,211,238,0.18), transparent 60%),
+                  linear-gradient(160deg, var(--bg1), var(--bg2));
+      font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      overflow: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -20%;
+      background: conic-gradient(from 0deg, rgba(52,211,153,0.10), rgba(167,139,250,0.06), rgba(34,211,238,0.10), rgba(52,211,153,0.10));
+      filter: blur(60px) saturate(120%);
+      animation: spin 28s linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .deck {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 2vh 2vw;
+    }
+    .slide {
+      width: var(--slide-w);
+      height: var(--slide-h);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(18px, 2.6vw, 34px) clamp(18px, 2.8vw, 42px);
+      display: none;
+      position: absolute;
+      overflow: hidden;
+    }
+    .slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(800px 400px at 100% 0%, rgba(167,139,250,0.08), transparent 60%),
+                  radial-gradient(700px 360px at 0% 100%, rgba(34,211,238,0.06), transparent 60%);
+      pointer-events: none;
+    }
+    .slide.active { display: block; }
+    .slide h1, .slide h2 {
+      margin: 0 0 0.6em 0;
+      letter-spacing: .3px;
+    }
+    .slide h1 { font-size: clamp(26px, 4.4vw, 46px); }
+    .slide h2 { font-size: clamp(20px, 3.2vw, 32px); color: var(--muted); font-weight: 600; }
+    .slide p, .slide li { font-size: clamp(15px, 1.6vw, 20px); color: #e5e7eb; }
+    .pill {
+      display: inline-flex; gap: 10px; align-items: center;
+      background: linear-gradient(90deg, rgba(34,211,238,0.16), rgba(167,139,250,0.16));
+      border: 1px solid rgba(255,255,255,0.14);
+      padding: 6px 12px; border-radius: 999px; color: #e2e8f0; font-size: 14px;
+    }
+    .grid-2 {
+      display: grid; grid-template-columns: 1fr; gap: 16px;
+    }
+    @media (min-width: 900px) { .grid-2 { grid-template-columns: 1fr 1fr; gap: 24px; } }
+    ul { margin: 0; padding-left: 1.1em; }
+    .kbd { padding: 2px 8px; border: 1px solid rgba(255,255,255,0.2); border-bottom-width: 3px; border-radius: 6px; background: rgba(15,23,42,0.6); font-weight: 600; }
+    .note { color: var(--muted); font-size: .95em; }
+    .accent { color: var(--acc1); }
+    .callout {
+      border-left: 3px solid var(--acc2);
+      padding-left: 14px;
+      background: linear-gradient(90deg, rgba(167,139,250,0.10), transparent);
+      border-radius: 8px;
+    }
+    /* Animations */
+    .slide.active [data-anim="up"] { opacity: 0; transform: translateY(14px); animation: up var(--transition) forwards; }
+    .slide.active [data-anim="up"]:nth-child(1) { animation-delay: .05s; }
+    .slide.active [data-anim="up"]:nth-child(2) { animation-delay: .12s; }
+    .slide.active [data-anim="up"]:nth-child(3) { animation-delay: .18s; }
+    .slide.active [data-anim="up"]:nth-child(4) { animation-delay: .24s; }
+    @keyframes up { to { opacity: 1; transform: translateY(0); } }
+    /* Controls */
+    .controls {
+      position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 10px; z-index: 2;
+      background: rgba(2,6,23,0.5); border: 1px solid rgba(255,255,255,0.1);
+      padding: 8px 10px; border-radius: 999px; backdrop-filter: blur(6px);
+    }
+    .btn {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: grid; place-items: center; color: var(--text);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.12); cursor: pointer; user-select: none;
+      transition: transform .12s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); background: rgba(255,255,255,0.1); }
+    .btn:active { transform: translateY(0); }
+    .progress {
+      position: fixed; bottom: 10px; left: 0; height: 4px; width: 100%;
+      background: rgba(255,255,255,0.08); z-index: 2;
+    }
+    .progress > i {
+      display: block; height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--acc1), var(--acc2), var(--acc3));
+      transition: width var(--transition);
+    }
+    .help {
+      position: fixed; top: 10px; right: 10px; z-index: 2; opacity: .9;
+    }
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      body::before { animation: none; }
+      .slide.active [data-anim="up"] { animation: none; opacity: 1; transform: none; }
+      .progress > i { transition: none; }
+    }
+    /* Print / export */
+    @media print {
+      body, html { overflow: auto; }
+      .controls, .progress, .help { display: none !important; }
+      .slide { position: static; page-break-after: always; display: block !important; width: 100%; height: auto; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck" id="deck" aria-live="polite">
+    <!-- Slide 1 -->
+    <section class="slide active" role="group" aria-roledescription="slide" aria-label="Título">
+      <div class="pill" data-anim="up">Aula • Copilot + Arquitetura</div>
+      <h1 data-anim="up">Construção Modular com Copilot</h1>
+      <h2 data-anim="up">Entregar mais valor dividindo o problema em módulos pequenos e testáveis</h2>
+      <p class="note" data-anim="up">
+        Dica: Use prompts específicos por módulo. Evite “fazer tudo de uma vez”.
+      </p>
+    </section>
+
+    <!-- Slide 2 -->
+    <section class="slide" role="group" aria-roledescription="slide" aria-label="Por que modular">
+      <h1 data-anim="up">Por que modular com IA?</h1>
+      <div class="grid-2">
+        <ul data-anim="up">
+          <li>Reduz ambiguidade para o Copilot com contexto menor e claro</li>
+          <li>Facilita testes, rollback e versionamento</li>
+          <li>Reuso entre serviços e times</li>
+          <li>Entrega incremental com feedback rápido</li>
+        </ul>
+        <ul data-anim="up">
+          <li>Fronteiras bem definidas → menos dependências ocultas</li>
+          <li>Melhor paralelização entre devs e entre prompts</li>
+          <li>Escalabilidade técnica e organizacional</li>
+          <li>Observabilidade e métricas por módulo</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Slide 3 -->
+    <section class="slide" role="group" aria-roledescription="slide" aria-label="Princípios">
+      <h1 data-anim="up">Princípios de Arquitetura Modular</h1>
+      <ul data-anim="up">
+        <li><span class="accent">Coesão alta</span>, <span class="accent">acoplamento baixo</span></li>
+        <li>Interfaces/contratos explícitos (DTOs, Schemas, Ports)</li>
+        <li>Separação de preocupações: domain, application, infra, presentation</li>
+        <li>Domínio primeiro: regras vivem no core, não na borda</li>
+        <li>Evolução segura: feature flags, migrações, compatibilidade</li>
+      </ul>
+    </section>
+
+    <!-- Slide 4 -->
+    <section class="slide" role="group" aria-roledescription="slide" aria-label="Camadas">
+      <h1 data-anim="up">Camadas e Fronteiras</h1>
+      <div class="grid-2">
+        <div class="callout" data-anim="up">
+          <h2>Domínio</h2>
+          <p>Entidades, regras, exceções. Sem dependências externas.</p>
+        </div>
+        <div class="callout" data-anim="up">
+          <h2>Aplicação</h2>
+          <p>Use cases, orquestração, transações. Fala com portas do domínio.</p>
+        </div>
+        <div class="callout" data-anim="up">
+          <h2>Infra</h2>
+          <p>Repositórios, DB models, integrações. Adapters concretos.</p>
+        </div>
+        <div class="callout" data-anim="up">
+          <h2>Apresentação</h2>
+          <p>APIs, Schemas, validações de borda, mapeamento de erros.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5 -->
+    <section class="slide" role="group" aria-roledescription="slide" aria-label="Benefícios Copilot">
+      <h1 data-anim="up">Como o Copilot ajuda mais em módulos</h1>
+      <ul data-anim="up">
+        <li>Contexto curto = sugestões mais precisas e consistentes</li>
+        <li>Prompts focados em um arquivo/classe reduzem ruído</li>
+        <li>Testes por módulo viram “targets” claros no prompt</li>
+        <li>Iterações rápidas: corrija só o módulo que falhou</li>
+      </ul>
+    </section>
+
+    <!-- Slide 6 -->
+    <section class="slide" role="group" aria-roledescription="slide" aria-label="Template Prompt">
+      <h1 data-anim="up">Template de Prompt (por módulo)</h1>
+      <div class="callout" data-anim="up">
+        <p><strong>Objetivo:</strong> [Descreva o que o módulo deve fazer]</p>
+        <p><strong>Entradas/Saídas:</strong> [DTOs/Schemas/Contratos]</p>
+        <p><strong>Regras:</strong> [Regras de negócio e validações]</p>
+        <p><strong>Arquivos-alvo:</strong> [Liste arquivos a alterar]</p>
+        <p><strong>Tests/Done:</strong> [Cenários felizes/tristes + coberturas]</p>
+        <p><strong>Erros:</strong> [Mapeamentos de exceções e HTTP]</p>
+      </div>
+      <p class="note" data-anim="up">Inclua métricas: cobertura mínima, lint, tipagem.</p>
+    </section>
+
+    <!-- Slide 7 -->
+    <section class="slide" role="group" aria-roledescription="slide" aria-label="Decomposição">
+      <h1 data-anim="up">Decomposição prática de uma feature</h1>
+      <ul data-anim="up">
+        <li>1) Defina o “core” (entidade/método de domínio)</li>
+        <li>2) Caso de uso que orquestra</li>
+        <li>3) Persistência/Model mapper</li>
+        <li>4) API e Schemas</li>
+        <li>5) Observabilidade (logs/metrics)</li>
+        <li>6) Testes por camada com alvos de cobertura</li>
+      </ul>
+    </section>
+
+    <!-- Slide 8 -->
+    <section class="slide" role="group" aria-roledescription="slide" aria-label="Padrões">
+      <h1 data-anim="up">Padrões úteis</h1>
+      <ul data-anim="up">
+        <li>Ports & Adapters (Hexagonal)</li>
+        <li>CQRS leve para separar leitura/escrita complexas</li>
+        <li>Value Objects para validações ricas</li>
+        <li>Mappers puros para conversões entre camadas</li>
+        <li>Idempotência e retriable policies nas integrações</li>
+      </ul>
+    </section>
+
+    <!-- Slide 9 -->
+    <section class="slide" role="group" aria-roledescription="slide" aria-label="Métricas">
+      <h1 data-anim="up">Métricas e “targets” por módulo</h1>
+      <ul data-anim="up">
+        <li>Cobertura mínima por camada (ex.: Domínio ≥95%)</li>
+        <li>Lint/format sem violações</li>
+        <li>Contract tests em APIs/Repos</li>
+        <li>Tempo de build/teste e flakiness</li>
+      </ul>
+    </section>
+
+    <!-- Slide 10 -->
+    <section class="slide" role="group" aria-roledescription="slide" aria-label="Anti-padrões">
+      <h1 data-anim="up">Anti-padrões a evitar</h1>
+      <ul data-anim="up">
+        <li>“Big bang” em um único PR</li>
+        <li>Prompts vagos, sem arquivos-alvo e critérios de aceite</li>
+        <li>Acoplamento entre camadas por “atalhos”</li>
+        <li>Regras de negócio na API em vez do domínio</li>
+      </ul>
+    </section>
+
+    <!-- Slide 11 -->
+    <section class="slide" role="group" aria-roledescription="slide" aria-label="Exercício">
+      <h1 data-anim="up">Exercício rápido</h1>
+      <p data-anim="up">Decomponha “Relatório de Ponto Mensal” em módulos:</p>
+      <ul data-anim="up">
+        <li>Domínio: regras de fechamento e tolerâncias</li>
+        <li>Aplicação: geração assíncrona e paginação</li>
+        <li>Infra: export CSV/PDF e cache</li>
+        <li>API: endpoints de request/status/download</li>
+        <li>Tests: unitários + integração de fluxo</li>
+      </ul>
+    </section>
+
+    <!-- Slide 12 -->
+    <section class="slide" role="group" aria-roledescription="slide" aria-label="Encerramento">
+      <h1 data-anim="up">Resumo</h1>
+      <ul data-anim="up">
+        <li>Quebre em módulos com fronteiras claras</li>
+        <li>Prompts específicos por arquivo/camada</li>
+        <li>Done = testes + métricas + contrato</li>
+        <li>Itere pequeno, entregue sempre</li>
+      </ul>
+      <p class="note" data-anim="up">Navegação: ← → ou espaço. Imprimir/Exportar: Ctrl/Cmd + P.</p>
+    </section>
+  </div>
+
+  <div class="controls" aria-hidden="false" aria-label="Controles">
+    <div class="btn" id="prev" title="Anterior (←)" aria-label="Anterior">⟵</div>
+    <div class="btn" id="next" title="Próximo (→)" aria-label="Próximo">⟶</div>
+  </div>
+  <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+  <div class="help pill">Dicas: ← → espaço • P: print</div>
+
+  <script>
+    (function () {
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const progressEl = document.getElementById('progress');
+      const nextBtn = document.getElementById('next');
+      const prevBtn = document.getElementById('prev');
+      const deck = document.getElementById('deck');
+      let index = 0;
+
+      function clamp(i) { return Math.max(0, Math.min(i, slides.length - 1)); }
+      function setHash(i) { history.replaceState(null, "", "#"+(i+1)); }
+
+      function fromHash() {
+        const n = parseInt(location.hash.replace('#',''), 10);
+        if (!Number.isFinite(n)) return 0;
+        return clamp(n - 1);
+      }
+
+      function show(i, {fromHashNav=false} = {}) {
+        index = clamp(i);
+        slides.forEach((s, idx) => s.classList.toggle('active', idx === index));
+        const pct = ((index + 1) / slides.length) * 100;
+        progressEl.style.width = pct + "%";
+        if (!fromHashNav) setHash(index);
+        const label = slides[index]?.getAttribute('aria-label') || `Slide ${index+1}`;
+        deck.setAttribute('aria-label', `Slide ${index+1} de ${slides.length}: ${label}`);
+      }
+
+      function next() { show(index + 1); }
+      function prev() { show(index - 1); }
+
+      // Events
+      nextBtn.addEventListener('click', next);
+      prevBtn.addEventListener('click', prev);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); next(); }
+        else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+        else if (e.key.toLowerCase() === 'p') { window.print(); }
+        else if (e.key === 'Home') { show(0); }
+        else if (e.key === 'End') { show(slides.length - 1); }
+        else if (/^[0-9]$/.test(e.key)) { // quick jump
+          const n = parseInt(e.key, 10);
+          if (n === 0) return;
+          show(n - 1);
+        }
+      });
+      window.addEventListener('hashchange', () => show(fromHash(), {fromHashNav:true}));
+
+      // Init
+      show(fromHash(), {fromHashNav:true});
+    })();
+  </script>
+</body>
+</html>

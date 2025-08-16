@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metodologia PROMPT - GitHub Copilot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="icone.png" alt="GitHub Copilot" class="copilot-icon">
+            <div class="logo-text">GitHub Copilot - Metodologia PROMPT</div>
+        </div>
+        <div class="camera-area">
+            <div class="camera-cutout"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="slide-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <h1>Metodologia PROMPT</h1>
+                <h2>Estruturando comunicação efetiva com GitHub Copilot</h2>
+                <p>Um framework sistemático para obter melhores resultados da IA</p>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <h2>P - Persona & R - Role (Papel) *</h2>
+                <ul>
+                    <li><strong>Defina o papel:</strong> "Você é um desenvolvedor sênior especialista em Node.js"</li>
+                    <li><strong>Estabeleça expertise:</strong> "Como arquiteto de software experiente"</li>
+                    <li><strong>Contexto profissional:</strong> "Atuando em uma startup de fintech"</li>
+                    <li><strong>Exemplo:</strong> "Como especialista em React, crie um hook customizado..."</li>
+                    <li><strong>*Nota:</strong> R pode ser interpretado como Rules (Regras/Constraints)</li>
+                </ul>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <h2>R - Role vs Rules: Duas Interpretações</h2>
+                <ul>
+                    <li><strong>Role (Papel):</strong> "Como desenvolvedor React sênior"</li>
+                    <li><strong>Rules (Regras):</strong> "Sempre inclua tratamento de erro e comentários"</li>
+                    <li><strong>Na prática:</strong> Ambos são úteis e podem ser combinados</li>
+                    <li><strong>Exemplo híbrido:</strong> "Como expert em Node.js, seguindo padrões clean code"</li>
+                </ul>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <h2>O - Objective (Objetivo)</h2>
+                <ul>
+                    <li><strong>Seja específico:</strong> "Criar uma API REST para gerenciar usuários"</li>
+                    <li><strong>Defina escopo:</strong> "Com Cadastro Completo e validação de dados"</li>
+                    <li><strong>Especifique resultado:</strong> "Retornando JSON estruturado"</li>
+                    <li><strong>Exemplo:</strong> "Objetivo: Implementar autenticação JWT com refresh token"</li>
+                </ul>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="slide">
+                <h2>M - Message & P - Parameters (Parâmetros)</h2>
+                <ul>
+                    <li><strong>Mensagem clara:</strong> "Implemente uma função de validação de email"</li>
+                    <li><strong>Parâmetros técnicos:</strong> "Usando TypeScript e regex"</li>
+                    <li><strong>Constraints:</strong> "Sem bibliotecas externas"</li>
+                    <li><strong>Exemplo:</strong> "Função validateEmail(email: string): boolean usando regex RFC 5322"</li>
+                </ul>
+            </div>
+
+            <!-- Slide 6 -->
+            <div class="slide">
+                <h2>T - Task (Tarefa) - Exemplo Prático</h2>
+                <p>Aplicando PROMPT completo no GitHub Copilot</p>
+                <ul>
+                    <li><strong>P:</strong> "Como desenvolvedor Node.js sênior"</li>
+                    <li><strong>R:</strong> "Especialista em APIs RESTful"</li>
+                    <li><strong>O:</strong> "Criar middleware de autenticação"</li>
+                    <li><strong>M:</strong> "Implementar verificação de JWT"</li>
+                    <li><strong>P:</strong> "Express.js, TypeScript, error handling"</li>
+                    <li><strong>T:</strong> "Retornar 401 se token inválido, next() se válido"</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else {
+                showSlide(0); // Volta para o primeiro slide
+            }
+        }
+
+        // Click navigation
+        document.body.addEventListener('click', nextSlide);
+
+        // Keyboard navigation (mantém para facilidade)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                } else {
+                    showSlide(totalSlides - 1); // Vai para o último slide
+                }
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

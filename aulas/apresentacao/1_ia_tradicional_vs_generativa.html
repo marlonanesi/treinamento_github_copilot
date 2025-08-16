@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Tradicional vs Generativa - GitHub Copilot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="icone.png" alt="GitHub Copilot" class="copilot-icon">
+            <div class="logo-text">GitHub Copilot - IA Tradicional vs Generativa</div>
+        </div>
+        <div class="camera-area">
+            <div class="camera-cutout"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="slide-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <h1>IA Tradicional vs Generativa</h1>
+                
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <h2>IA Tradicional</h2>
+                <ul>
+                    <li>Baseada em regras e algoritmos predefinidos</li>
+                    <li>Funciona com dados estruturados</li>
+                    <li>Resultados previsíveis e determinísticos</li>
+                    <li>Exemplos: sistemas especialistas, árvores de decisão</li>
+                </ul>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <h2>IA Generativa</h2>
+                <ul>
+                    <li>Cria novo conteúdo baseado em padrões aprendidos</li>
+                    <li>Utiliza redes neurais profundas</li>
+                    <li>Gera textos, imagens, código e mais</li>
+                    <li>Exemplos: GPT, DALL-E, GitHub Copilot</li>
+                </ul>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <h2>Principais Diferenças</h2>
+                <ul>
+                    <li><strong>Criatividade:</strong> IA Generativa é criativa, Tradicional é lógica</li>
+                    <li><strong>Aprendizado:</strong> Generativa aprende padrões, Tradicional segue regras</li>
+                    <li><strong>Flexibilidade:</strong> Generativa se adapta, Tradicional é rígida</li>
+                    <li><strong>Aplicação:</strong> Generativa cria, Tradicional analisa</li>
+                </ul>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="slide">
+                <h2>GitHub Copilot</h2>
+                <p>Um exemplo perfeito de ferramenta de IA Generativa aplicada ao desenvolvimento</p>
+                <ul>
+                    <li>Gera código em tempo real</li>
+                    <li>Aprende com milhões de repositórios</li>
+                    <li>Adapta-se ao seu estilo de programação</li>
+                    <li>Aumenta produtividade significativamente</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else {
+                showSlide(0); // Volta para o primeiro slide
+            }
+        }
+
+        // Click navigation
+        document.body.addEventListener('click', nextSlide);
+
+        // Keyboard navigation (mantém para facilidade)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                } else {
+                    showSlide(totalSlides - 1); // Vai para o último slide
+                }
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+[run]
+source = app
+relative_files = true
+
+[report]
+omit =
+  venv/*
+  __pycache__/*
+  tests/*
+  app/main.py
+
+[xml]
+output = coverage.xml
+
+[html]
+directory = htmlcov
