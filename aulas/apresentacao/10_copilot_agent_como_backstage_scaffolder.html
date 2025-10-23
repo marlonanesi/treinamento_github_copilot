@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copilot como Backstage / Scaffolder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="icone.png" alt="GitHub Copilot" class="copilot-icon">
+            <div class="logo-text">Copilot como Backstage / Scaffolder</div>
+        </div>
+        <div class="camera-area">
+            <div class="camera-cutout"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="slide-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <h1>Copilot como Backstage / Scaffolder</h1>
+                <h2>Do prompt scriptado ao projeto rodando</h2>
+                <p>Foco: reuso, consistência e velocidade</p>
+            </div>
+
+            <!-- Slide 2: Problema e oportunidade -->
+            <div class="slide">
+                <h2>Problema e oportunidade</h2>
+                <ul>
+                    <li>Onboarding lento e muito boilerplate repetitivo.</li>
+                    <li>Inconsistências entre repositórios e stacks.</li>
+                    <li>Templates defasados; difícil padronizar manualmente.</li>
+                    <li>Copilot + “playbook” Markdown = scaffolding sob demanda.</li>
+                    <li>Reuso de arquitetura de referência com ajustes mínimos.</li>
+                </ul>
+            </div>
+
+            <!-- Slide 3: Blueprint.md scriptado -->
+            <div class="slide">
+                <h2>Blueprint.md (README/Guia) scriptado</h2>
+                <ul>
+                    <li>Objetivo, requisitos e decisões (stack, nome, portas, libs).</li>
+                    <li>Seções com “Prompt” e “Critérios de aceitação”.</li>
+                    <li>Estrutura alvo do projeto (árvore de diretórios).</li>
+                    <li>Tarefas pós-geração (lint, testes, CI/CD, container, docs).</li>
+                    <li>Vira a “fonte de verdade” do scaffold — versionável em Git.</li>
+                </ul>
+            </div>
+
+            <!-- Slide 4: Contrato do scaffold -->
+            <div class="slide">
+                <h2>Contrato do scaffold (inputs/outputs)</h2>
+                <ul>
+                    <li>Inputs: nome do app, linguagem/stack, porta, camadas, libs padrão.</li>
+                    <li>Outputs: árvore de pastas, arquivos-chave, scripts de run/build.</li>
+                    <li>Qualidade: hello world rodando, lint/format ok, testes básicos verdes.</li>
+                    <li>Docs mínimas: README com “como rodar”, “como testar”, “como deployar”.</li>
+                    <li>Idempotência: regenerar sem quebrar customizações locais.</li>
+                </ul>
+            </div>
+
+            <!-- Slide 5: Exemplo 1 FastAPI -->
+            <div class="slide">
+                <h2>Exemplo 1: Microserviço FastAPI</h2>
+                <ul>
+                    <li>Estrutura: app/, api/routers/, domain/, services/, infra/, tests/.</li>
+                    <li>main.py com /health e /hello; uvicorn para dev.</li>
+                    <li>Models Pydantic; config via env (.env.example) e Settings.</li>
+                    <li>Requirements + pre-commit (ruff/black), pytest, Dockerfile e compose.</li>
+                    <li>CI GitHub Actions: lint + testes (smoke) no push/PR.</li>
+                </ul>
+            </div>
+
+            <!-- Slide 6: Blueprint de prompt (FastAPI) -->
+            <div class="slide">
+                <h2>Blueprint de prompt (FastAPI)</h2>
+                <ul>
+                    <li>“Com base neste Blueprint.md, gere a estrutura e arquivos abaixo.”</li>
+                    <li>“Crie main.py, api/routers/hello.py, domain/models.py, services/hello.py.”</li>
+                    <li>“Inclua tests/test_health.py e test_hello.py (smoke).”</li>
+                    <li>“Adicione Dockerfile, docker-compose.yml e .env.example.”</li>
+                    <li>“Configure ruff/black, pre-commit e workflow de CI (lint+test).”</li>
+                </ul>
+            </div>
+
+            <!-- Slide 7: Exemplo 2 Nuxt 3 -->
+            <div class="slide">
+                <h2>Exemplo 2: Microfrontend Vue 3 + Nuxt 3</h2>
+                <ul>
+                    <li>Estrutura: pages/, components/, layouts/, composables/, plugins/.</li>
+                    <li>Base UI: Button, Card, Navbar; layout default.</li>
+                    <li>Rotas: / (home) e /about; data fetching simples.</li>
+                    <li>TypeScript, ESLint/Prettier; Vitest (unit) e Playwright (e2e opcional).</li>
+                    <li>Scripts npm/yarn: dev, build, test, lint, preview.</li>
+                </ul>
+            </div>
+
+            <!-- Slide 8: Blueprint de prompt (Nuxt) -->
+            <div class="slide">
+                <h2>Blueprint de prompt (Nuxt 3)</h2>
+                <ul>
+                    <li>“Inicialize projeto Nuxt 3 com TypeScript e Tailwind CSS.”</li>
+                    <li>“Crie pages/index.vue e pages/about.vue; layouts/default.vue.”</li>
+                    <li>“Gere components/BaseButton.vue, BaseCard.vue, Navbar.vue.”</li>
+                    <li>“Configure nuxt.config.ts, aliases, envs e ESLint/Prettier.”</li>
+                    <li>“Adicione testes mínimos e scripts de run/build/lint/test.”</li>
+                </ul>
+            </div>
+
+            <!-- Slide 10: Quando ir além (Templates/Backstage) -->
+            <div class="slide">
+                <h2>Quando ir além: Templates e Backstage</h2>
+                <ul>
+                    <li>Necessidade de governança, catálogo e aprovações padronizadas.</li>
+                    <li>Converter o Blueprint em template de repositório/Backstage.</li>
+                    <li>Publicar “starters” e “scaffolder tasks” reusáveis.</li>
+                    <li>Copilot continua útil para ajustes finos e geração contextual.</li>
+                    <li>Mensurar: tempo de setup, qualidade inicial e aderência a padrões.</li>
+                </ul>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else {
+                showSlide(0); // Volta para o primeiro slide
+            }
+        }
+
+        // Click navigation
+        document.body.addEventListener('click', nextSlide);
+
+        // Keyboard navigation (mantém para facilidade)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                } else {
+                    showSlide(totalSlides - 1); // Vai para o último slide
+                }
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

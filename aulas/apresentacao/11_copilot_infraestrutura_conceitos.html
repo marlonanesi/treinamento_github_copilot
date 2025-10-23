@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copilot para Infraestrutura (DevOps/SRE)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="icone.png" alt="GitHub Copilot" class="copilot-icon">
+            <div class="logo-text">Conceitos universais de infraestrutura usando o Copilot</div>
+        </div>
+        <div class="camera-area">
+            <div class="camera-cutout"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="slide-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <h1>Copilot para Infraestrutura (DevOps/SRE)</h1>
+                <h2>Do desenho à execução segura e supervisionada</h2>
+                
+            </div>
+
+            <!-- Slide 2: Visão geral -->
+            <div class="slide">
+                <h2>Visão geral (DevOps/SRE + Copilot)</h2>
+                <ul>
+                    <li>Infra declarativa como código: previsível, rastreável e auditável.</li>
+                    <li>Copilot usa o contexto do repo (pastas, manifests, workflows).</li>
+                    <li>Gera rascunhos de infraestrutura rapidamente e com padrões.</li>
+                    <li>Você supervisiona, revisa (PR) e aprova mudanças controladas.</li>
+                    <li>Integra com CLIs e pipelines para fechar o ciclo (plan → apply → verify).</li>
+                </ul>
+            </div>
+
+            <!-- Slide 3: YAML como código -->
+            <div class="slide">
+                <h2>YAML é a base de muita infra</h2>
+                <ul>
+                    <li>Kubernetes (Deployment, Service, Ingress, HPA, CronJob etc.).</li>
+                    <li>Helm (Chart/values), Kustomize, ArgoCD, Docker Compose.</li>
+                    <li>GitHub Actions (workflows), Renovate, Dependabot configs.</li>
+                    <li>Vantagens: versionável, revisável, validável e automatizável.</li>
+                    <li>Exemplo de prompt: “Gere Deployment + Service + Ingress p/ app X (porta Y, 3 réplicas, readiness Z).”</li>
+                </ul>
+            </div>
+
+            <!-- Slide 4: Do alto nível ao manifesto -->
+            <div class="slide">
+                <h2>De requisitos de alto nível → YAMLs</h2>
+                <ul>
+                    <li>Defina objetivos: imagem/porta, réplicas, recursos, env/secrets, domínios.</li>
+                    <li>Peça ao Copilot: manifests K8s (Deployment/Service/Ingress/HPA).</li>
+                    <li>Inclua CI: workflow de build/test/push e deploy (GitHub Actions).</li>
+                    <li>Critérios: lints passando, validação de schema e rollout sucesso.</li>
+                    <li>Itere: “adicione limits/requests”, “troque Ingress p/ NGINX”, “use namespace X”.</li>
+                </ul>
+            </div>
+
+            <!-- Slide 5: Planejar, aplicar e validar -->
+            <div class="slide">
+                <h2>Plan → Apply → Verify (com confirmações)</h2>
+                <ul>
+                    <li>Gere e valide: yamllint/actionlint, kubeconform/kubeval (dry-run).</li>
+                    <li>Solicite confirmação antes de executar: kubectl apply/rollout, helm upgrade.</li>
+                    <li>Verifique pós-apply: rollout status, logs, readiness/liveness, metrics.</li>
+                    <li>Automatize via pipelines (PR → review → merge → deploy controlado).</li>
+                    <li>Reaja a falhas: rollback/undo, corrija YAML e re-aplique.</li>
+                </ul>
+            </div>
+
+            <!-- Slide 6: Agente autônomo e guardrails -->
+            <div class="slide">
+                <h2>Agente autônomo com guardrails</h2>
+                <ul>
+                    <li>Fluxo orientado: o agente propõe → pede confirmação → executa.</li>
+                    <li>Princípio do menor privilégio (RBAC) e ambientes (dev/stage/prod).</li>
+                    <li>Políticas: OPA/Gatekeeper/Conftest; GitOps (ArgoCD) para convergência.</li>
+                    <li>Segredos: External Secrets/Sealed Secrets; nunca em YAML plano.</li>
+                    <li>Regra de ouro: nada em produção sem revisão humana e auditoria.</li>
+                </ul>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else {
+                showSlide(0); // Volta para o primeiro slide
+            }
+        }
+
+        // Click navigation
+        document.body.addEventListener('click', nextSlide);
+
+        // Keyboard navigation (mantém para facilidade)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                } else {
+                    showSlide(totalSlides - 1); // Vai para o último slide
+                }
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

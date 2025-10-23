@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagramas, contexto e o Github Copilot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="icone.png" alt="GitHub Copilot" class="copilot-icon">
+            <div class="logo-text">Diagramas, contexto e o Github Copilot</div>
+        </div>
+        <div class="camera-area">
+            <div class="camera-cutout"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="slide-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <h1>Diagramas, contexto e o GitHub Copilot</h1>
+                <h2>Do código ao diagrama — como o contexto vira visual</h2>
+
+            </div>
+
+            <!-- Slide 2: Por que diagramas como código? -->
+            <div class="slide">
+                <h2>Por que diagramas como código?</h2>
+                <ul>
+                    <li>Versionáveis em Git (histórico, diffs e rollback).</li>
+                    <li>Revisáveis via Pull Request, com comentários e sugestões.</li>
+                    <li>Reprodutíveis (CI/automação) e fáceis de manter.</li>
+                    <li>Rastreáveis: conectam-se ao código, requisitos e documentação.</li>
+                    <li>Colaboração e consistência visual entre times e projetos.</li>
+                </ul>
+            </div>
+
+            <!-- Slide 3: Como o Copilot usa contexto -->
+            <div class="slide">
+                <h2>Como o Copilot usa contexto</h2>
+                <ul>
+                    <li>Considera arquivos abertos e trechos relevantes do repositório na IDE</li>
+                    <li>Ou um mapa de contexto da aplicação como vimos uso dessa tecnica para summarizar uma aplicação maior.</li>
+                    <li>Entende estrutura de pastas, nomes de módulos/classes e comentários.</li>
+                    <li>Resume relações e fluxos para propor um diagrama inicial.</li>
+                    <li>Quanto melhor o contexto fornecido (arquivos-chave abertos), melhor a saída.</li>
+                    <li>Peça referências: “quais arquivos/linhas embasaram o diagrama?”.</li>
+                </ul>
+            </div>
+
+            <!-- Slide 4: Formatos geráveis como arquivo -->
+            <div class="slide">
+                <h2>Alguns dos formatos geráveis (arquivos/versionáveis)</h2>
+                <ul>
+                    <li>Mermaid (.md/.mmd): flowchart, sequence, classDiagram, state, ERD.</li>
+                    <li>D2 (.d2): linguagem declarativa simples para diagramas variados.</li>
+                    <li>Draw.io (.drawio XML): importável no app/web, com estilos e grupos.</li>
+                    <li>PlantUML (.puml) e Graphviz DOT (.dot): opções tradicionais.</li>
+                    <li>JSON/YAML específicos de ferramentas (quando suportado).</li>
+                </ul>
+            </div>
+
+            <!-- Slide 5: Prompts eficazes -->
+            <div class="slide">
+                <h2>Exemplos de prompts eficazes</h2>
+                <ul>
+                    <li>Lembre sempre de indicar a persona mais adequada para gerar o diagrama <br>(ex: desenvolvedor sr, devops sr, arquiteto, sempre conforme o objetivo)</li>
+                    <li>“Analise as pastas app/domain e app/infrastructure e gere um Mermaid de fluxo.”</li>
+                    <li>“Extraia entidades e relacionamentos e gere um ERD (Mermaid classDiagram).”</li>
+                    <li>“Gere um .drawio (XML) com grupos: Presentation, Application, Domain, Infra.”</li>
+                    <li>“Converta este Mermaid para .drawio, mantendo nomes/agrupamentos.”</li>
+                    <li>“Itere: refine rótulos, setas, alinhamentos e adicione uma legenda.”</li>
+                </ul>
+            </div>
+
+
+            <!-- Slide 6: Boas práticas e limites -->
+            <div class="slide">
+                <h2>Boas práticas e limites</h2>
+                <ul>
+                    <li>Contexto limitado: abra os arquivos certos e forneça objetivos claros.</li>
+                    <li>Valide nomes e relações — o diagrama é um ponto de partida.</li>
+                    <li>Prefira diagramas curtos por objetivo (módulo/foco específico).</li>
+                    <li>Peça justificativas e referências para facilitar a revisão.</li>
+                    <li>Automatize conversões/checagens com scripts e CI, quando possível.</li>
+                </ul>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-text">
+            Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else {
+                showSlide(0); // Volta para o primeiro slide
+            }
+        }
+
+        // Click navigation
+        document.body.addEventListener('click', nextSlide);
+
+        // Keyboard navigation (mantém para facilidade)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                } else {
+                    showSlide(totalSlides - 1); // Vai para o último slide
+                }
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
