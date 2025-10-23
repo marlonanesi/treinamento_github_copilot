@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ms-funcionario-config
+  namespace: github-copilot
+  labels:
+    app: ms-cadastro-funcionario
+
+data:
+  API_HOST: "0.0.0.0"
+  API_PORT: "8007"
+  API_VERSION: "v1"
+  ENVIRONMENT: "development"
+  LOG_LEVEL: "INFO"
+  DATABASE_NAME: "funcionarios_db"
+  MONGODB_URL: "mongodb://mongodb:27017"

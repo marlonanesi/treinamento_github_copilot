@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: shutdown-github-copilot-namespace
+  namespace: github-copilot
+  labels:
+    app.kubernetes.io/name: shutdown-github-copilot-namespace
+spec:
+  schedule: "0 19 * * *"  # Todos os dias às 19:00
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      template:
+        spec:
+          serviceAccountName: namespace-scheduler
+          restartPolicy: OnFailure
+          containers:
+            - name: scaler
+              image: bitnami/kubectl:1.30
+              imagePullPolicy: IfNotPresent
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  echo "[Shutdown] Escalonando Deployments e StatefulSets do namespace 'github-copilot' para 0 replicas";
+                  kubectl -n github-copilot scale deployment --all --replicas=0 || true;
+                  kubectl -n github-copilot scale statefulset --all --replicas=0 || true;
