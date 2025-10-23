@@ -26,7 +26,7 @@ RUN groupadd --gid 1000 appuser && \
     mkdir -p /app/logs && chown -R appuser:appuser /app
 
 USER appuser
-EXPOSE 8000
+EXPOSE 8007
 
 # Stage 2: runtime (produção)
 FROM python:3.11-slim AS runtime
@@ -56,11 +56,11 @@ RUN groupadd --gid 1000 appuser && \
     mkdir -p /app/logs && chown -R appuser:appuser /app
 
 USER appuser
-EXPOSE 8000
+EXPOSE 8007
 
 # Healthcheck simples
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD python -c "import http.client as h;c=h.HTTPConnection('localhost',8000,timeout=5);c.request('GET','/health');r=c.getresponse(); exit(0 if r.status==200 else 1)"
+    CMD python -c "import http.client as h;c=h.HTTPConnection('localhost',8007,timeout=5);c.request('GET','/health');r=c.getresponse(); exit(0 if r.status==200 else 1)"
 
 # Comando padrão de execução em produção
-CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8007"]
