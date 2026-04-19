@@ -21,18 +21,46 @@
     <!-- Main Content -->
     <main class="main-content">
         <div class="slide-container">
-            <!-- Único slide consolidado -->
+            <!-- Slide 1 -->
             <div class="slide active">
-                <h1>O que é GitHub Copilot e a ideia por trás dele</h1>
+                <h1>O que é GitHub Copilot</h1>
+                <h2>E a ideia por trás dele</h2>
+                <p>Pair programming aumentado: humano + IA colaborando em tempo real</p>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <h2>Definição e Propósito</h2>
                 <ul>
-                    <li>Assistente de IA generativa integrado diretamente ao editor</li>
+                    <li>Assistente de IA generativa integrado diretamente ao editor (VS Code, JetBrains, Neovim)</li>
                     <li>Sugere linhas, blocos, funções, testes e documentação em tempo real</li>
                     <li>Treinado em um amplo conjunto de código público e padrões consolidados</li>
-                    <li>Entende contexto: arquivos abertos, comentários, estrutura e estilo do projeto</li>
                     <li>Objetivo: acelerar fluxo, reduzir tarefas repetitivas e desbloquear criatividade</li>
-                    <li>Ideia central: pair programming aumentado (humano + IA colaborando)</li>
-                    <li>Foco em responsabilidade: filtragem, privacidade, aderência a licenças</li>
-                    <li>Evolui continuamente via feedback e melhorias de modelos</li>
+                    <li>Ideia central: <strong>pair programming aumentado</strong> - você decide, a IA auxilia</li>
+                </ul>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <h2>Evolução: Do Autocomplete ao Agent Mode</h2>
+                <ul>
+                    <li><strong>2021:</strong> Lançamento - autocomplete inteligente de código</li>
+                    <li><strong>2023:</strong> Copilot Chat - diálogo conversacional com contexto de projeto</li>
+                    <li><strong>2024:</strong> Multi-modelo (GPT, Claude, Gemini) - escolha do modelo</li>
+                    <li><strong>2025:</strong> Agent Mode - execução autônoma de tarefas multi-passo</li>
+                    <li><strong>2025+:</strong> MCP, Custom Instructions, Copilot Extensions e coding agent</li>
+                </ul>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <h2>Pilares do GitHub Copilot</h2>
+                <ul>
+                    <li><strong>Contexto inteligente:</strong> entende arquivos abertos, imports, estrutura e estilo do projeto</li>
+                    <li><strong>Multi-modal:</strong> código, chat, terminal, edição inline, agente autônomo</li>
+                    <li><strong>Responsabilidade:</strong> filtragem de código inseguro, privacidade, aderência a licenças</li>
+                    <li><strong>Extensibilidade:</strong> MCP servers, custom instructions, extensions e skills</li>
+                    <li><strong>Evolução contínua:</strong> novos modelos e capacidades integrados regularmente</li>
                 </ul>
             </div>
         </div>
@@ -40,14 +68,50 @@
 
     <!-- Footer -->
     <footer class="footer">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
         <div class="footer-text">
             Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
         </div>
     </footer>
 
     <script>
-        // Removido código de navegação de múltiplos slides (agora único slide).
-        // Espaço reservado para futuras interações se necessário.
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else {
+                showSlide(0);
+            }
+        }
+
+        document.body.addEventListener('click', nextSlide);
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                } else {
+                    showSlide(totalSlides - 1);
+                }
+            }
+        });
+
+        showSlide(0);
     </script>
 </body>
 </html>

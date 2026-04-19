@@ -24,65 +24,67 @@
             <!-- Slide 1 -->
             <div class="slide active">
                 <h1>Como Funciona o GitHub Copilot</h1>
-                <h2>E GitHub Copilot Chat</h2>
-                <p>Entendendo a arquitetura e funcionamento das duas ferramentas de IA para desenvolvimento</p>
+                <h2>Completions, Chat e Agent Mode</h2>
+                <p>Entendendo a arquitetura e os modos de interação com a IA para desenvolvimento</p>
             </div>
 
             <!-- Slide 2 -->
             <div class="slide">
-                <h2>GitHub Copilot - Arquitetura</h2>
+                <h2>Copilot Completions - Autocomplete Inteligente</h2>
                 <ul>
-                    <li><strong>Modelo:</strong> OpenAI Codex (especializado em código)</li>
-                    <li><strong>Treinamento:</strong> Bilhões de linhas de código público</li>
-                    <li><strong>Funcionamento:</strong> Sugestões inline em tempo real</li>
-                    <li><strong>Contexto:</strong> Analisa código atual + arquivos abertos</li>
+                    <li><strong>Modelo:</strong> Multi-modelo otimizado para velocidade (sugestões em milissegundos)</li>
+                    <li><strong>Contexto:</strong> Analisa arquivo atual + arquivos abertos + imports</li>
+                    <li><strong>Funcionamento:</strong> Sugestões inline em tempo real enquanto você digita</li>
+                    <li><strong>Aceite seletivo:</strong> Tab (aceitar), Ctrl+→ (aceitar palavra), Esc (rejeitar)</li>
                 </ul>
             </div>
 
             <!-- Slide 3 -->
             <div class="slide">
-                <h2>GitHub Copilot Chat - Arquitetura</h2>
+                <h2>Copilot Chat - Diálogo com Contexto</h2>
                 <ul>
-                    <li><strong>Modelos:</strong> GPT-4, Claude, o1-preview (dentre outros)</li>
-                    <li><strong>Interface:</strong> Chat conversacional integrado ao VS Code</li>
-                    <li><strong>Funcionamento:</strong> Diálogo interativo com contexto de projeto</li>
-                    <li><strong>Capacidades:</strong> Explicações, refatoração, debugging</li>
+                    <li><strong>Modelos:</strong> GPT, Claude Sonnet, Gemini, o3 (selecione no chat)</li>
+                    <li><strong>Interface:</strong> Chat lateral + Inline Chat (Ctrl+I) + Quick Chat</li>
+                    <li><strong>Contexto:</strong> @workspace, #file, #selection, #terminalLastCommand</li>
+                    <li><strong>Capacidades:</strong> Explicações, refatoração, debugging, geração, testes</li>
                 </ul>
             </div>
 
             <!-- Slide 4 -->
             <div class="slide">
-                <h2>Comparação: Copilot vs Copilot Chat</h2>
+                <h2>Agent Mode - Execução Autônoma</h2>
                 <ul>
-                    <li><strong>Copilot:</strong> Sugestões automáticas baseadas no que você está digitando</li>
-                    <li><strong>Copilot Chat:</strong> Implementação direcionada - "quero fazer X"</li>
-                    <li><strong>Na prática:</strong> Chat é mais preciso para tarefas específicas</li>
-                    <li><strong>Uso real:</strong> Chat para implementar, Copilot para completar detalhes</li>
+                    <li><strong>Conceito:</strong> O Copilot planeja, executa e itera de forma autônoma</li>
+                    <li><strong>Capacidades:</strong> Cria/edita múltiplos arquivos, roda comandos no terminal</li>
+                    <li><strong>MCP:</strong> Conecta-se a ferramentas externas via Model Context Protocol</li>
+                    <li><strong>Workflow:</strong> Você descreve a tarefa, o agente implementa passo a passo</li>
+                    <li><strong>Supervisão:</strong> Você revisa e aprova cada ação crítica</li>
                 </ul>
             </div>
 
             <!-- Slide 5 -->
             <div class="slide">
-                <h2>Interação Real Entre as Ferramentas</h2>
-                <p>Como usar ambos de forma complementar</p>
+                <h2>Quando Usar Cada Modo</h2>
+                <p>Combinando os três modos para máxima produtividade</p>
                 <ul>
-                    <li><strong>Inicie no Chat:</strong> "Criar API REST para usuários"</li>
-                    <li><strong>Implemente com Chat:</strong> Código estrutural completo</li>
-                    <li><strong>Refine com Copilot:</strong> Autocompletar variáveis, imports</li>
-                    <li><strong>Volte ao Chat:</strong> Ajustes, testes, documentação</li>
-                    <li><strong>Experimente:</strong> Não há regra fixa - adapte ao seu workflow</li>
+                    <li><strong>Completions:</strong> Escrever código fluido - variáveis, funções, imports</li>
+                    <li><strong>Inline Chat:</strong> Refatorar ou explicar um trecho selecionado</li>
+                    <li><strong>Chat lateral:</strong> Perguntas complexas, debugging, discussão de arquitetura</li>
+                    <li><strong>Agent Mode:</strong> Tarefas grandes (criar feature, scaffold, migração)</li>
+                    <li><strong>Dica:</strong> Não há regra fixa - adapte ao contexto da tarefa</li>
                 </ul>
             </div>
 
             <!-- Slide 6 -->
             <div class="slide">
-                <h2>Fluxo de Funcionamento</h2>
-                <p>Como as duas ferramentas processam e respondem</p>
+                <h2>Fluxo de Processamento</h2>
+                <p>O que acontece nos bastidores a cada interação</p>
                 <ul>
-                    <li><strong>1. Captura:</strong> Ambos analisam contexto do código atual</li>
-                    <li><strong>2. Processamento:</strong> Envio seguro para modelos na nuvem</li>
-                    <li><strong>3. Geração:</strong> IA cria resposta baseada no contexto</li>
-                    <li><strong>4. Retorno:</strong> Sugestão inline (Copilot) ou resposta (Chat)</li>
+                    <li><strong>1. Captura:</strong> Copilot coleta contexto (código, arquivos, instruções)</li>
+                    <li><strong>2. Enriquecimento:</strong> Adiciona custom instructions e referências relevantes</li>
+                    <li><strong>3. Processamento:</strong> Envio seguro e criptografado para o modelo na nuvem</li>
+                    <li><strong>4. Geração:</strong> Modelo cria resposta baseada no contexto completo</li>
+                    <li><strong>5. Retorno:</strong> Sugestão inline, resposta no chat ou ação do agente</li>
                 </ul>
             </div>
         </div>
@@ -90,6 +92,9 @@
 
     <!-- Footer -->
     <footer class="footer">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
         <div class="footer-text">
             Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
         </div>
@@ -104,6 +109,8 @@
             slides[currentSlide].classList.remove('active');
             currentSlide = (n + totalSlides) % totalSlides;
             slides[currentSlide].classList.add('active');
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
         }
 
         function nextSlide() {

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introdução ao Curso - GitHub Copilot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="icone.png" alt="GitHub Copilot" class="copilot-icon">
+            <div class="logo-text">GitHub Copilot - Introdução ao Curso</div>
+        </div>
+        <div class="camera-area">
+            <div class="camera-cutout"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="slide-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <h1>Domine o GitHub Copilot</h1>
+                <h2>De assistente de código a parceiro de engenharia</h2>
+                <p>+50 aulas - do zero ao microsserviço em produção e muito mais, guiado por IA</p>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <h2>Por que este curso agora?</h2>
+                <ul>
+                    <li>O mercado já exige profissionais que <strong>sabem colaborar com IA</strong> - não é mais diferencial, é requisito</li>
+                    <li>Quem domina Copilot entrega mais rápido, com mais qualidade e menos retrabalho</li>
+                    <li>Você vai aprender a <strong>pensar junto com a IA</strong>: prompt engineering, contexto, refinamento e automação</li>
+                    <li>Não é sobre substituir o dev - é sobre <strong>multiplicar</strong> o que você já sabe fazer</li>
+                    <li>Ao final, você terá construído um <strong>microsserviço real com DDD, testes e deploy em Kubernetes</strong></li>
+                </ul>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <h2>O que você vai dominar</h2>
+                <ul>
+                    <li><strong>Fundamentos sólidos:</strong> IA Tradicional vs Generativa, LLMs, context window e Metodologia PROMPT</li>
+                    <li><strong>Prática desde o início:</strong> geração de código, testes, docs, revisão e interfaces - tudo com Copilot</li>
+                    <li><strong>MCP:</strong> conectando o Copilot a ferramentas reais — filesystem, GitHub, web e banco de dados</li>
+                    <li><strong>Técnicas avançadas:</strong> mapa de contexto, construção modular, múltiplas personas (Dev, QA, PO, UX...)</li>
+                    <li><strong>Projeto real completo:</strong> microsserviço com DDD, FastAPI, MongoDB, Docker e cobertura de testes</li>
+                    <li><strong>Infra e automação:</strong> diagramas com IA, scaffolding de apps e deploy em Kubernetes</li>
+                </ul>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <h2>Sua jornada em 12 seções</h2>
+                <ul>
+                    <li><strong>Seções 1–2:</strong> Introdução e conceitos essenciais - IA Generativa, LLMs, prompts e metodologia</li>
+                    <li><strong>Seção 3:</strong> Primeiros passos - instalação, interface, código, testes e documentação com Copilot</li>
+                    <li><strong>Seção 4:</strong> MCP - conectando o Copilot a arquivos, GitHub, web e bancos de dados com linguagem natural</li>
+                    <li><strong>Seções 5–6:</strong> Técnicas avançadas e refinamento - mapa de contexto, personas e planejamento antes de codar</li>
+                    <li><strong>Seções 7–8:</strong> Projeto real - microsserviço DDD completo + cobertura de testes com SonarQube</li>
+                    <li><strong>Seções 9–11:</strong> Diagramas, scaffolding de apps e migração para Kubernetes com Copilot</li>
+                </ul>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="slide">
+                <h2>Preparado para começar?</h2>
+                <ul>
+                    <li>Cada aula foi pensada para ser <strong>prática e aplicável</strong> - você sai fazendo, não apenas assistindo</li>
+                    <li>O ritmo é progressivo: fundamentos → prática guiada → projeto real → automação avançada</li>
+                    <li>Você vai errar, ajustar prompts e iterar - e é <strong>exatamente assim</strong> que se domina IA generativa</li>
+                    <li>Ao final: um portfólio real com microsserviço, testes, infra e documentação - tudo construído com Copilot</li>
+                    <li><strong>Vamos nessa? A próxima aula já começa!</strong></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="footer-text">
+            Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else {
+                showSlide(0);
+            }
+        }
+
+        // Click navigation
+        document.body.addEventListener('click', nextSlide);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                } else {
+                    showSlide(totalSlides - 1);
+                }
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

@@ -32,45 +32,48 @@
             <div class="slide">
                 <h2>O que é a Janela de Contexto?</h2>
                 <ul>
-                    <li>Quantidade limitada de código que o Copilot consegue "ver"</li>
-                    <li>Inclui: arquivo atual, arquivos abertos, imports e dependências</li>
-                    <li>Aproximadamente 8.000 tokens (~6.000 palavras)</li>
-                    <li><strong>Impacto:</strong> Determina a qualidade das sugestões</li>
+                    <li>Quantidade de informação (tokens) que o modelo consegue processar por requisição</li>
+                    <li>Inclui: arquivo atual, arquivos abertos, imports, histórico do chat e instruções</li>
+                    <li>Modelos atuais: <strong>128k+ tokens</strong> (GPT, Claude) - muito maior que antes</li>
+                    <li>Copilot otimiza automaticamente o que enviar para maximizar relevância</li>
+                    <li><strong>Impacto direto:</strong> mais contexto relevante = sugestões mais precisas</li>
                 </ul>
             </div>
 
             <!-- Slide 3 -->
             <div class="slide">
-                <h2>Como o Contexto Impacta as Tarefas</h2>
+                <h2>Como o Contexto Impacta as Sugestões</h2>
                 <ul>
-                    <li><strong>Funções complexas:</strong> Contexto insuficiente = sugestões genéricas</li>
-                    <li><strong>APIs específicas:</strong> Sem imports visíveis = métodos incorretos</li>
+                    <li><strong>Funções complexas:</strong> Contexto insuficiente = sugestões genéricas e imprecisas</li>
+                    <li><strong>APIs específicas:</strong> Sem imports visíveis = métodos incorretos ou inventários</li>
                     <li><strong>Padrões do projeto:</strong> Falta de exemplos = estilo inconsistente</li>
-                    <li><strong>Tipos customizados:</strong> Definições distantes = erros de tipagem</li>
+                    <li><strong>Tipos customizados:</strong> Definições fora da janela = erros de tipagem</li>
+                    <li><strong>Regra de ouro:</strong> se você não vê a informação, o Copilot também não vê</li>
                 </ul>
             </div>
 
             <!-- Slide 4 -->
             <div class="slide">
-                <h2>Estratégias para Melhor Uso do Contexto</h2>
+                <h2>Ferramentas de Gestão de Contexto</h2>
                 <ul>
-                    <li><strong>Mantenha arquivos relacionados abertos:</strong> Interfaces, tipos, constantes</li>
-                    <li><strong>Coloque exemplos próximos:</strong> Funções similares no mesmo arquivo</li>
-                    <li><strong>Use comentários descritivos:</strong> Explique a intenção da função</li>
-                    <li><strong>Imports organizados:</strong> Mantenha dependências visíveis no topo</li>
-                    <li><strong>Engenharia de prompt:</strong> Como nos comunicamos "instruções" para o Copilot</li>
+                    <li><strong>#file:</strong> Referencie arquivos específicos no chat para incluir no contexto</li>
+                    <li><strong>@workspace:</strong> Busca semântica em todo o projeto automaticamente</li>
+                    <li><strong>#selection:</strong> Inclua o código selecionado como referência no prompt</li>
+                    <li><strong>Custom Instructions:</strong> .github/copilot-instructions.md para regras do projeto</li>
+                    <li><strong>Arquivos abertos:</strong> Mantenha interfaces, types e constantes abertos</li>
                 </ul>
             </div>
 
             <!-- Slide 5 -->
             <div class="slide">
-                <h2>Técnicas Avançadas de Contexto</h2>
+                <h2>Boas Práticas de Contexto</h2>
                 <p>Maximizando a eficiência do GitHub Copilot</p>
                 <ul>
-                    <li><strong>Nomeação clara:</strong> Variáveis e funções autoexplicativas</li>
-                    <li><strong>Estrutura modular:</strong> Arquivos pequenos e focados</li>
-                    <li><strong>Documentação inline:</strong> JSDoc, docstrings para APIs</li>
-                    <li><strong>Padrões consistentes:</strong> Convenções de código uniformes</li>
+                    <li><strong>Nomeação clara:</strong> Variáveis e funções autoexplicativas guiam o modelo</li>
+                    <li><strong>Estrutura modular:</strong> Arquivos pequenos e focados = contexto mais limpo</li>
+                    <li><strong>Documentação inline:</strong> JSDoc, docstrings, type hints enriquecem o contexto</li>
+                    <li><strong>Padrões consistentes:</strong> Convenções uniformes ajudam o modelo a prever intenção</li>
+                    <li><strong>Prompt iterativo:</strong> Refine com base na resposta anterior - o histórico é contexto</li>
                 </ul>
             </div>
         </div>
@@ -78,6 +81,9 @@
 
     <!-- Footer -->
     <footer class="footer">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
         <div class="footer-text">
             Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
         </div>
@@ -92,6 +98,8 @@
             slides[currentSlide].classList.remove('active');
             currentSlide = (n + totalSlides) % totalSlides;
             slides[currentSlide].classList.add('active');
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
         }
 
         function nextSlide() {

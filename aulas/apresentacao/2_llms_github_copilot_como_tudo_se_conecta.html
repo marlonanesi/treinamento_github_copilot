@@ -32,10 +32,11 @@
             <div class="slide">
                 <h2>O que são Large Language Models (LLMs)?</h2>
                 <ul>
-                    <li>Modelos de IA treinados em vastos volumes de texto</li>
-                    <li>Bilhões de parâmetros para compreender linguagem natural</li>
-                    <li>Capacidade de generalização e aprendizado contextual</li>
-                    <li>Exemplos: GPT-4, Claude, Gemini</li>
+                    <li>Modelos de IA treinados em volumes massivos de texto e código</li>
+                    <li>Bilhões de parâmetros - compreendem linguagem natural e linguagens de programação</li>
+                    <li>Capacidade de generalização, raciocínio e aprendizado contextual (in-context learning)</li>
+                    <li>Exemplos atuais: GPT, Claude (Anthropic), Gemini (Google), o3 (OpenAI)</li>
+                    <li><strong>Tendência:</strong> modelos de raciocínio (o1, o3) que "pensam" antes de responder</li>
                 </ul>
             </div>
 
@@ -43,21 +44,23 @@
             <div class="slide">
                 <h2>Como os LLMs Funcionam no Código</h2>
                 <ul>
-                    <li>Analisam padrões em milhões de repositórios</li>
-                    <li>Compreendem contexto e sintaxe de programação</li>
-                    <li>Reconhecem boas práticas e convenções</li>
-                    <li>Geram código contextualmente relevante</li>
+                    <li>Treinados em bilhões de linhas de código público (GitHub, docs, fóruns)</li>
+                    <li>Compreendem sintaxe, semântica e padrões arquiteturais</li>
+                    <li>Reconhecem boas práticas, convenções e anti-patterns</li>
+                    <li>Geram código contextualmente relevante baseado no seu projeto</li>
+                    <li><strong>Limitação:</strong> não executam código - preveem o próximo token mais provável</li>
                 </ul>
             </div>
 
             <!-- Slide 4 -->
             <div class="slide">
-                <h2>GitHub Copilot: LLMs em Ação</h2>
+                <h2>GitHub Copilot: Multi-Modelo em Ação</h2>
                 <ul>
-                    <li><strong>Tecnologia:</strong> Baseado em modelos OpenAI Codex</li>
-                    <li><strong>Treinamento:</strong> Bilhões de linhas de código público</li>
-                    <li><strong>Benefícios:</strong> Aceleração e qualidade no desenvolvimento</li>
-                    <li><strong>Aplicação:</strong> Sugestões em tempo real contextualmente relevantes</li>
+                    <li><strong>Arquitetura:</strong> Multi-modelo - GPT, Claude, Gemini, o3 disponíveis</li>
+                    <li><strong>Treinamento:</strong> Modelos treinados em bilhões de linhas de código</li>
+                    <li><strong>Flexibilidade:</strong> Escolha o modelo ideal para cada tipo de tarefa</li>
+                    <li><strong>Integração:</strong> Sugestões inline + Chat + Agent Mode + Terminal</li>
+                    <li><strong>Evolução:</strong> Novos modelos integrados conforme surgem (ex: Claude Sonnet, GPT-5)</li>
                 </ul>
             </div>
 
@@ -66,10 +69,11 @@
                 <h2>O Impacto dos LLMs no Desenvolvimento</h2>
                 <p>Como essa tecnologia está transformando a programação</p>
                 <ul>
-                    <li>Democratização da programação para mais pessoas</li>
-                    <li>Foco em problemas complexos ao invés de sintaxe</li>
-                    <li>Maior produtividade e redução de bugs</li>
-                    <li>Aprendizado contínuo de melhores práticas</li>
+                    <li>Democratização: reduz barreiras de entrada para novos desenvolvedores</li>
+                    <li>Foco em lógica e arquitetura ao invés de sintaxe e boilerplate</li>
+                    <li>Produtividade: estudos indicam ganho de 30-55% em tarefas comuns</li>
+                    <li>Continuous learning: LLMs evoluem, e o Copilot evolui junto</li>
+                    <li><strong>Importante:</strong> a IA não substitui o dev - amplifica suas capacidades</li>
                 </ul>
             </div>
         </div>
@@ -77,6 +81,9 @@
 
     <!-- Footer -->
     <footer class="footer">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
         <div class="footer-text">
             Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
         </div>
@@ -91,6 +98,8 @@
             slides[currentSlide].classList.remove('active');
             currentSlide = (n + totalSlides) % totalSlides;
             slides[currentSlide].classList.add('active');
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
         }
 
         function nextSlide() {

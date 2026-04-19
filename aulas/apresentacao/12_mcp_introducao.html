@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP — Introdução ao Model Context Protocol</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="icone.png" alt="GitHub Copilot" class="copilot-icon">
+            <div class="logo-text">MCP — Conectando modelos ao mundo real</div>
+        </div>
+        <div class="camera-area">
+            <div class="camera-cutout"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="slide-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <h1>MCP - Model Context Protocol</h1>
+                <h2>Conectando modelos de IA ao mundo real</h2>
+            </div>
+
+            <!-- Slide 2: O problema -->
+            <div class="slide">
+                <h2>O problema: LLMs isolados</h2>
+                <ul>
+                    <li>LLMs são poderosos, mas vivem dentro de uma "bolha"</li>
+                    <li>Sem acesso nativo a arquivos locais, bancos de dados e APIs externas</li>
+                    <li>Cada integração era resolvida de forma diferente e proprietária</li>
+                    <li>Resultado: esforço duplicado, integrações frágeis e sem padrão</li>
+                    <li>O modelo sabe <em>muito</em>, mas não consegue <em>agir</em> no mundo real sozinho</li>
+                </ul>
+            </div>
+
+            <!-- Slide 3: O que é MCP -->
+            <div class="slide">
+                <h2>O que é MCP?</h2>
+                <ul>
+                    <li>Model Context Protocol: protocolo aberto criado pela Anthropic (2024)</li>
+                    <li>Padroniza como modelos de IA se conectam a ferramentas e fontes de dados externas</li>
+                    <li>Open source, agnóstico de modelo e de linguagem de programação</li>
+                    <li>Define uma interface única: um modelo pode usar qualquer ferramenta que fale MCP</li>
+                    <li>Elimina integrações ad-hoc e promove reuso entre ferramentas e modelos</li>
+                </ul>
+            </div>
+
+            <!-- Slide 4: Analogia USB-C -->
+            <div class="slide">
+                <h2>Analogia: USB-C para IA</h2>
+                <ul>
+                    <li>Antes do USB-C: cada fabricante tinha seu próprio conector</li>
+                    <li>Com USB-C: um padrão único conecta qualquer dispositivo a qualquer acessório</li>
+                    <li>MCP é o "USB-C para IA": um protocolo que conecta qualquer modelo a qualquer ferramenta</li>
+                    <li>O modelo não precisa saber <em>como</em> a ferramenta funciona internamente</li>
+                    <li>A ferramenta não precisa saber <em>qual</em> modelo vai consumi-la</li>
+                </ul>
+            </div>
+
+            <!-- Slide 5: Arquitetura -->
+            <div class="slide">
+                <h2>Arquitetura — O triângulo MCP</h2>
+                <ul>
+                    <li><strong>Host:</strong> a aplicação que o usuário usa (VS Code + Copilot, Claude Desktop, Cursor)</li>
+                    <li><strong>Cliente MCP:</strong> componente embutido no Host que fala o protocolo MCP</li>
+                    <li><strong>Servidor MCP:</strong> processo que expõe ferramentas, recursos e prompts ao modelo</li>
+                    <li>O Host inicia a conversa → o Cliente descobre as ferramentas → o modelo as invoca</li>
+                    <li>O Servidor executa a ação real (ler arquivo, chamar API, consultar banco)</li>
+                </ul>
+            </div>
+
+            <!-- Slide 6: Ecossistema -->
+            <div class="slide">
+                <h2>MCP no ecossistema atual</h2>
+                <ul>
+                    <li><strong>GitHub Copilot:</strong> suporte a MCP Servers no VS Code e GitHub.com</li>
+                    <li><strong>Claude / Claude Desktop:</strong> pioneiro na adoção do protocolo</li>
+                    <li><strong>Cursor e Windsurf:</strong> IDEs com suporte nativo a servidores MCP</li>
+                    <li>Adoção crescente: Microsoft, Google, OpenAI e a comunidade open source</li>
+                    <li>Efeito de rede: mais servidores disponíveis → mais valor para qualquer cliente MCP</li>
+                </ul>
+            </div>
+
+            <!-- Slide 7: Tipos de servidores -->
+            <div class="slide">
+                <h2>Tipos de servidores MCP</h2>
+                <ul>
+                    <li><strong>Local (stdio):</strong> processo rodando na sua máquina, comunicação via stdin/stdout</li>
+                    <li>Ideal para ferramentas de desktop: acesso a arquivos, terminal, banco local</li>
+                    <li><strong>Remoto (SSE / HTTP):</strong> servidor na nuvem, comunicação via HTTP com Server-Sent Events</li>
+                    <li>Ideal para APIs externas, SaaS e integrações compartilhadas em equipe</li>
+                    <li>Ambos seguem o mesmo protocolo — o cliente não precisa saber a diferença</li>
+                </ul>
+            </div>
+
+            <!-- Slide 8: Onde encontrar -->
+            <div class="slide">
+                <h2>Onde encontrar servidores MCP</h2>
+                <ul>
+                    <li><strong>GitHub Marketplace:</strong> servidores publicados e verificados pela comunidade</li>
+                    <li><strong>mcp.so:</strong> diretório centralizado com servidores categorizados por função</li>
+                    <li><strong>Repositórios oficiais:</strong> Anthropic, GitHub, Microsoft e parceiros publicam servidores de referência</li>
+                    <li>Exemplos populares: filesystem, GitHub, Postgres, Slack, Brave Search, Puppeteer</li>
+                    <li>Você também pode criar seu próprio servidor MCP com poucos arquivos</li>
+                </ul>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="footer-text">
+            Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else {
+                showSlide(0); // Volta para o primeiro slide
+            }
+        }
+
+        // Click navigation
+        document.body.addEventListener('click', nextSlide);
+
+        // Keyboard navigation (mantém para facilidade)
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                } else {
+                    showSlide(totalSlides - 1); // Vai para o último slide
+                }
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

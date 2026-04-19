@@ -29,12 +29,13 @@
 
             <!-- Slide 2 -->
             <div class="slide">
-                <h2>IA Tradicional</h2>
+                <h2>IA Tradicional (Discriminativa)</h2>
                 <ul>
-                    <li>Baseada em regras e algoritmos predefinidos</li>
-                    <li>Funciona com dados estruturados</li>
-                    <li>Resultados previsíveis e determinísticos</li>
-                    <li>Exemplos: sistemas especialistas, árvores de decisão</li>
+                    <li>Baseada em regras, algoritmos e modelos estatísticos predefinidos</li>
+                    <li>Funciona com dados estruturados - classifica, prevê e otimiza</li>
+                    <li>Resultados previsíveis, determinísticos e auditáveis</li>
+                    <li>Exemplos: sistemas especialistas, árvores de decisão, regressão, detecção de fraude</li>
+                    <li><strong>Força:</strong> confiabilidade e explicabilidade em cenários bem definidos</li>
                 </ul>
             </div>
 
@@ -42,33 +43,47 @@
             <div class="slide">
                 <h2>IA Generativa</h2>
                 <ul>
-                    <li>Cria novo conteúdo baseado em padrões aprendidos</li>
-                    <li>Utiliza redes neurais profundas</li>
-                    <li>Gera textos, imagens, código e mais</li>
-                    <li>Exemplos: GPT, DALL-E, GitHub Copilot</li>
+                    <li>Cria novo conteúdo (texto, código, imagens, áudio, vídeo) a partir de padrões aprendidos</li>
+                    <li>Utiliza LLMs e redes neurais profundas com bilhões de parâmetros</li>
+                    <li>Resultados probabilísticos - criatividade e variabilidade a cada execução</li>
+                    <li>Exemplos: GPT, Claude, Gemini, GitHub Copilot, Midjourney, Sora</li>
+                    <li><strong>Força:</strong> flexibilidade, criatividade e capacidade de lidar com tarefas abertas</li>
                 </ul>
             </div>
 
             <!-- Slide 4 -->
             <div class="slide">
-                <h2>Principais Diferenças</h2>
+                <h2>Comparativo Direto</h2>
                 <ul>
-                    <li><strong>Criatividade:</strong> IA Generativa é criativa, Tradicional é lógica</li>
-                    <li><strong>Aprendizado:</strong> Generativa aprende padrões, Tradicional segue regras</li>
-                    <li><strong>Flexibilidade:</strong> Generativa se adapta, Tradicional é rígida</li>
-                    <li><strong>Aplicação:</strong> Generativa cria, Tradicional analisa</li>
+                    <li><strong>Entrada → Saída:</strong> Tradicional classifica dados | Generativa cria conteúdo novo</li>
+                    <li><strong>Aprendizado:</strong> Tradicional segue regras explícitas | Generativa aprende padrões implícitos</li>
+                    <li><strong>Flexibilidade:</strong> Tradicional é determinística | Generativa se adapta ao contexto</li>
+                    <li><strong>Explicabilidade:</strong> Tradicional é auditável | Generativa ainda é uma "caixa-preta"</li>
+                    <li><strong>Custo computacional:</strong> Tradicional é leve | Generativa exige GPUs e bilhões de parâmetros</li>
                 </ul>
             </div>
 
             <!-- Slide 5 -->
             <div class="slide">
-                <h2>GitHub Copilot</h2>
-                <p>Um exemplo perfeito de ferramenta de IA Generativa aplicada ao desenvolvimento</p>
+                <h2>Na Prática: Convergência no Desenvolvimento</h2>
+                <p>Ferramentas modernas combinam ambas abordagens</p>
                 <ul>
-                    <li>Gera código em tempo real</li>
-                    <li>Aprende com milhões de repositórios</li>
-                    <li>Adapta-se ao seu estilo de programação</li>
-                    <li>Aumenta produtividade significativamente</li>
+                    <li><strong>IA Tradicional no dev:</strong> linters, análise estática, type-checking, detecção de vulnerabilidades</li>
+                    <li><strong>IA Generativa no dev:</strong> GitHub Copilot - geração de código, testes, docs e refatoração</li>
+                    <li><strong>Juntas:</strong> Copilot gera o código, ferramentas tradicionais validam qualidade</li>
+                    <li><strong>Resultado:</strong> fluxo mais rápido com segurança e confiabilidade</li>
+                </ul>
+            </div>
+
+            <!-- Slide 6 -->
+            <div class="slide">
+                <h2>GitHub Copilot como Exemplo</h2>
+                <p>IA Generativa aplicada ao desenvolvimento de software</p>
+                <ul>
+                    <li>Multi-modelo: acessa GPT, Claude, Gemini e modelos de raciocínio (o3)</li>
+                    <li>Gera código, testes, documentação e infraestrutura em tempo real</li>
+                    <li>Agent Mode: executa tarefas multi-passo de forma autônoma</li>
+                    <li>Adapta-se ao contexto do projeto, convenções e estilo da equipe</li>
                 </ul>
             </div>
         </div>
@@ -76,6 +91,9 @@
 
     <!-- Footer -->
     <footer class="footer">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
         <div class="footer-text">
             Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
         </div>
@@ -90,6 +108,8 @@
             slides[currentSlide].classList.remove('active');
             currentSlide = (n + totalSlides) % totalSlides;
             slides[currentSlide].classList.add('active');
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
         }
 
         function nextSlide() {

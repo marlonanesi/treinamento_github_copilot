@@ -73,8 +73,7 @@
                     <li>Contexto curto = sugestões mais precisas e consistentes</li>
                     <li>Prompts focados em um arquivo/classe reduzem ruído</li>
                     <li>Testes por módulo viram “targets” claros no prompt</li>
-                    <li>Iterações rápidas: corrija só o módulo que falhou</li>
-                </ul>
+                    <li>Iterações rápidas: corrija só o módulo que falhou</li>                    <li><strong>Agent Mode:</strong> descreva a feature inteira, o agente implementa módulo por módulo com supervisão</li>                </ul>
             </div>
 
             <!-- Slide 6 -->
@@ -105,7 +104,7 @@
             </div>
 
 
-            <!-- Slide 9 -->
+            <!-- Slide 8 -->
             <div class="slide">
                 <h2>Métricas e “targets” por módulo</h2>
                 <ul>
@@ -120,15 +119,15 @@
             <div class="slide">
                 <h2>Anti-padrões a evitar</h2>
                 <ul>
-                    <li>“Big bang” em um único PR</li>
+                    <li>“Big bang” em um único PR - dificulta revisão e rollback</li>
                     <li>Prompts vagos, sem arquivos-alvo e critérios de aceite</li>
-                    <li>Acoplamento entre camadas por “atalhos”</li>
+                    <li>Acoplamento entre camadas por "atalhos" de conveniência</li>
                     <li>Regras de negócio na API em vez do domínio</li>
+                    <li>Pedir tudo de uma vez ao agente sem supervisão por etapa</li>
                 </ul>
             </div>
 
-
-            <!-- Slide 12 -->
+            <!-- Slide 10 -->
             <div class="slide">
                 <h2>Resumo</h2>
                 <ul>
@@ -136,14 +135,17 @@
                     <li>Prompts específicos por arquivo/camada</li>
                     <li>Done = testes + métricas + contrato</li>
                     <li>Itere pequeno, entregue sempre</li>
+                    <li>Agent Mode acelera a execução - você define a fronteira, ele implementa</li>
                 </ul>
-
             </div>
         </div>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
         <div class="footer-text">
             Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
         </div>
@@ -158,6 +160,8 @@
             slides[currentSlide].classList.remove('active');
             currentSlide = (n + totalSlides) % totalSlides;
             slides[currentSlide].classList.add('active');
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
         }
 
         function nextSlide() {

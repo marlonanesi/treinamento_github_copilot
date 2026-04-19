@@ -25,18 +25,19 @@
             <div class="slide active">
                 <h1>Copilot como Backstage / Scaffolder</h1>
                 <h2>Do prompt scriptado ao projeto rodando</h2>
-                <p>Foco: reuso, consistência e velocidade</p>
+                <p>Foco: reuso, consistência e velocidade - amplificados pelo Agent Mode</p>
             </div>
 
             <!-- Slide 2: Problema e oportunidade -->
             <div class="slide">
                 <h2>Problema e oportunidade</h2>
                 <ul>
-                    <li>Onboarding lento e muito boilerplate repetitivo.</li>
-                    <li>Inconsistências entre repositórios e stacks.</li>
-                    <li>Templates defasados; difícil padronizar manualmente.</li>
-                    <li>Copilot + “playbook” Markdown = scaffolding sob demanda.</li>
-                    <li>Reuso de arquitetura de referência com ajustes mínimos.</li>
+                    <li>Onboarding lento e muito boilerplate repetitivo</li>
+                    <li>Inconsistências entre repositórios e stacks</li>
+                    <li>Templates defasados; difícil padronizar manualmente</li>
+                    <li>Copilot + "playbook" Markdown = scaffolding sob demanda</li>
+                    <li><strong>Agent Mode:</strong> agora pode criar toda a estrutura de arquivos de uma vez, com supervisão</li>
+                    <li>Reuso de arquitetura de referência com ajustes mínimos</li>
                 </ul>
             </div>
 
@@ -48,7 +49,7 @@
                     <li>Seções com “Prompt” e “Critérios de aceitação”.</li>
                     <li>Estrutura alvo do projeto (árvore de diretórios).</li>
                     <li>Tarefas pós-geração (lint, testes, CI/CD, container, docs).</li>
-                    <li>Vira a “fonte de verdade” do scaffold — versionável em Git.</li>
+                    <li>Vira a “fonte de verdade” do scaffold - versionável em Git.</li>
                 </ul>
             </div>
 
@@ -129,6 +130,9 @@
 
     <!-- Footer -->
     <footer class="footer">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
         <div class="footer-text">
             Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
         </div>
@@ -143,6 +147,8 @@
             slides[currentSlide].classList.remove('active');
             currentSlide = (n + totalSlides) % totalSlides;
             slides[currentSlide].classList.add('active');
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
         }
 
         function nextSlide() {

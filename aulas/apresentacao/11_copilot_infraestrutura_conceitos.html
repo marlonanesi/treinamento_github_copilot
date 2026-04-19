@@ -32,11 +32,12 @@
             <div class="slide">
                 <h2>Visão geral (DevOps/SRE + Copilot)</h2>
                 <ul>
-                    <li>Infra declarativa como código: previsível, rastreável e auditável.</li>
-                    <li>Copilot usa o contexto do repo (pastas, manifests, workflows).</li>
-                    <li>Gera rascunhos de infraestrutura rapidamente e com padrões.</li>
-                    <li>Você supervisiona, revisa (PR) e aprova mudanças controladas.</li>
-                    <li>Integra com CLIs e pipelines para fechar o ciclo (plan → apply → verify).</li>
+                    <li>Infra declarativa como código: previsível, rastreável e auditável</li>
+                    <li>Copilot usa o contexto do repo (pastas, manifests, workflows)</li>
+                    <li>Gera rascunhos de infraestrutura rapidamente e com padrões</li>
+                    <li>Você supervisiona, revisa (PR) e aprova mudanças controladas</li>
+                    <li>Integra com CLIs e pipelines para fechar o ciclo (plan → apply → verify)</li>
+                    <li><strong>gh copilot:</strong> explica e sugere comandos de terminal com linguagem natural</li>
                 </ul>
             </div>
 
@@ -80,11 +81,12 @@
             <div class="slide">
                 <h2>Agente autônomo com guardrails</h2>
                 <ul>
-                    <li>Fluxo orientado: o agente propõe → pede confirmação → executa.</li>
-                    <li>Princípio do menor privilégio (RBAC) e ambientes (dev/stage/prod).</li>
-                    <li>Políticas: OPA/Gatekeeper/Conftest; GitOps (ArgoCD) para convergência.</li>
-                    <li>Segredos: External Secrets/Sealed Secrets; nunca em YAML plano.</li>
-                    <li>Regra de ouro: nada em produção sem revisão humana e auditoria.</li>
+                    <li>Fluxo orientado: o agente propõe → pede confirmação → executa</li>
+                    <li>Princípio do menor privilégio (RBAC) e ambientes isolados (dev/stage/prod)</li>
+                    <li>Políticas: OPA/Gatekeeper/Conftest; GitOps (ArgoCD/Flux) para convergência</li>
+                    <li>Segredos: External Secrets/Sealed Secrets - nunca em YAML plano</li>
+                    <li>Scanning de segurança: Trivy, Snyk, checkov no pipeline antes do apply</li>
+                    <li>Regra de ouro: nada em produção sem revisão humana e auditoria</li>
                 </ul>
             </div>
 
@@ -93,6 +95,9 @@
 
     <!-- Footer -->
     <footer class="footer">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
         <div class="footer-text">
             Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
         </div>
@@ -107,6 +112,8 @@
             slides[currentSlide].classList.remove('active');
             currentSlide = (n + totalSlides) % totalSlides;
             slides[currentSlide].classList.add('active');
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
         }
 
         function nextSlide() {

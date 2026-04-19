@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engenharia de Prompt - GitHub Copilot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="icone.png" alt="GitHub Copilot" class="copilot-icon">
+            <div class="logo-text">GitHub Copilot - Engenharia de Prompt</div>
+        </div>
+        <div class="camera-area">
+            <div class="camera-cutout"></div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="slide-container">
+            <!-- Slide 1 - Abertura -->
+            <div class="slide active">
+                <h1>Engenharia de Prompt</h1>
+                <h2>Comunicação efetiva com o GitHub Copilot</h2>
+                <p>A qualidade da saída depende diretamente da qualidade da entrada</p>
+            </div>
+
+            <!-- Slide 2 - Analogia -->
+            <div class="slide">
+                <h2>A Analogia da Comunicação</h2>
+                <ul>
+                    <li><strong>Com sua mãe:</strong> "Oi mãe, como você está?" (casual, afetivo)</li>
+                    <li><strong>Com seu chefe:</strong> "Sr. Silva, gostaria de alinhar o escopo do projeto" (formal)</li>
+                    <li><strong>Com seu amigo:</strong> "E aí, cara! Bora pro happy hour?" (informal)</li>
+                    <li><strong>Com o Copilot:</strong> Claro, específico, contexto certo, tom imperativo</li>
+                    <li><strong>Insight:</strong> A IA responde melhor quando a instrução é precisa e direta</li>
+                </ul>
+            </div>
+
+            <!-- Slide 3 - Anatomia do Prompt -->
+            <div class="slide">
+                <h2>Anatomia de um Prompt Efetivo</h2>
+                <ul>
+                    <li><strong>Claro:</strong> "Criar função que valida email com regex" vs "fazer validação"</li>
+                    <li><strong>Específico:</strong> "Retornar boolean, cobrir domínios .com.br"</li>
+                    <li><strong>Contextual:</strong> "Para o módulo de cadastro do projeto Django"</li>
+                    <li><strong>Completo:</strong> "Com tratamento de erro, type hints e docstring"</li>
+                    <li><strong>Iterativo:</strong> Refine com base na resposta - cada iteração melhora o resultado</li>
+                </ul>
+            </div>
+
+            <!-- Slide 4 - Introdução ao Framework PROMPT -->
+            <div class="slide">
+                <h1>Metodologia PROMPT</h1>
+                <h2>Um framework para estruturar seus prompts</h2>
+                <p>P · R · O · M · P · T - seis letras, um acrônimo prático</p>
+            </div>
+
+            <!-- Slide 6 - P e R -->
+            <div class="slide">
+                <h2>P - Persona & R - Role / Rules</h2>
+                <ul>
+                    <li><strong>P - Persona:</strong> Quem a IA deve "ser" - "Você é um dev sênior especialista em Python/FastAPI"</li>
+                    <li><strong>R - Role:</strong> Papel específico dentro da persona - ex: persona dev, role especialista em documentação</li>
+                    <li><strong>R - Rules:</strong> Regras e restrições - "Sempre use type hints, docstrings e SOLID"</li>
+                    <li><strong>R - Custom Instructions:</strong> .github/copilot-instructions.md para regras permanentes do projeto</li>
+                    <li><strong>Dica:</strong> Persona define quem é, Role define o foco, Rules define como agir</li>
+                </ul>
+            </div>
+
+            <!-- Slide 7 - O, M, P, T -->
+            <div class="slide">
+                <h2>O · M · P · T</h2>
+                <ul>
+                    <li><strong>O - Objective:</strong> Objetivo claro - "Criar endpoint REST para CRUD de funcionários"</li>
+                    <li><strong>M - Methods:</strong> Como fazer - "Use repository pattern, exceções tratadas e logs estruturados"</li>
+                    <li><strong>P - Parameters:</strong> Stack e versões - "Python 3.12, Pydantic v2, pytest, FastAPI"</li>
+                    <li><strong>T - Tone ou Task:</strong> Tom da resposta ou tarefa específica - "Tom técnico. Retornar 401 se inválido, 403 se sem permissão"</li>
+                    <li><strong>Dica:</strong> Uma tarefa por prompt - prompts focados geram respostas melhores</li>
+                </ul>
+            </div>
+
+            <!-- Slide 8 - Exemplo Completo -->
+            <div class="slide">
+                <h2>PROMPT na Prática - Exemplo Completo</h2>
+                <p>Aplicando o framework de ponta a ponta</p>
+                <ul>
+                    <li><strong>P (Persona):</strong> "Você é um dev Python sênior especialista em APIs"</li>
+                    <li><strong>R (Role/Rules):</strong> "Role: especialista em segurança. Rules: clean architecture e SOLID"</li>
+                    <li><strong>O (Objective):</strong> "Criar middleware de autenticação JWT"</li>
+                    <li><strong>M (Methods):</strong> "Use decorator pattern, valide no startup, logue tentativas inválidas"</li>
+                    <li><strong>P (Parameters):</strong> "FastAPI, Python 3.12, PyJWT, Pydantic v2"</li>
+                    <li><strong>T (Tone/Task):</strong> "Tom técnico e direto. Retornar 401 se token inválido, 403 se sem permissão"</li>
+                </ul>
+            </div>
+
+            <!-- Slide 9 - Estratégias Avançadas -->
+            <div class="slide">
+                <h2>Estratégias Avançadas</h2>
+                <p>Maximizando a precisão das respostas</p>
+                <ul>
+                    <li><strong>Contexto explícito:</strong> Selecione código + use #file para referências</li>
+                    <li><strong>Few-shot:</strong> Dê 1-2 exemplos do padrão desejado antes de pedir</li>
+                    <li><strong>Constraints:</strong> "Sem bibliotecas externas, máximo 20 linhas"</li>
+                    <li><strong>Decomponha:</strong> Tarefas grandes = vários prompts menores e encadeados</li>
+                    <li><strong>Custom Instructions:</strong> Configure .github/copilot-instructions.md para o projeto</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="footer-text">
+            Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else {
+                showSlide(0);
+            }
+        }
+
+        // Click navigation
+        document.body.addEventListener('click', nextSlide);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                } else {
+                    showSlide(totalSlides - 1);
+                }
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

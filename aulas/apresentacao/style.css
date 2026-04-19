@@ -8,7 +8,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #e8f4f8 0%, #d1e7dd 25%, #a7d8ea 50%, #7dd3fc 75%, #bfdbfe 100%);
+    background: linear-gradient(160deg, #09090b 0%, #111113 35%, #18181b 65%, #1c1c1f 100%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -37,14 +37,14 @@ body {
 }
 
 .copilot-icon {
-    width: 232px;
+    width: 194px;
     height: 170px;
     border-radius: 44px;
     animation: sway 4s ease-in-out infinite;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 4px 12px rgba(167, 139, 250, 0.5));
     transition: transform 0.3s ease;
     opacity: 0.85;
-    margin-left: -20px;
+    margin-left: -14px;
     margin-top: 15px;
 }
 
@@ -66,11 +66,11 @@ body {
 }
 
 .logo-text {
-    color: #1e40af;
+    color: #f4f4f5;
     font-size: 26px;
     font-weight: 700;
-    text-shadow: 0 2px 8px rgba(30, 64, 175, 0.3), 0 4px 16px rgba(59, 130, 246, 0.2);
-    background: linear-gradient(135deg, #60a5fa, #3b82f6, #1e40af);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    background: linear-gradient(135deg, #ffffff, #d4d4d8, #a1a1aa);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -90,17 +90,17 @@ body {
     height: 238px;
     background: conic-gradient(
         from 0deg,
-        #3b82f6 0deg,
-        #60a5fa 72deg,
-        #93c5fd 144deg,
-        #dbeafe 216deg,
-        #3b82f6 288deg,
-        #3b82f6 360deg
+        #27272a 0deg,
+        #3f3f46 72deg,
+        #71717a 144deg,
+        #a1a1aa 216deg,
+        #27272a 288deg,
+        #27272a 360deg
     );
     border-radius: 50%;
     box-shadow: 
-        0 8px 32px rgba(30, 64, 175, 0.15),
-        inset 0 2px 4px rgba(148, 163, 184, 0.1);
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.05);
     position: relative;
     overflow: hidden;
     display: flex;
@@ -132,9 +132,9 @@ body {
     background: conic-gradient(
         from 180deg,
         transparent 0deg,
-        rgba(96, 165, 250, 0.6) 45deg,
-        rgba(147, 197, 253, 0.8) 90deg,
-        rgba(96, 165, 250, 0.6) 135deg,
+        rgba(161, 161, 170, 0.6) 45deg,
+        rgba(212, 212, 216, 0.8) 90deg,
+        rgba(161, 161, 170, 0.6) 135deg,
         transparent 180deg,
         transparent 360deg
     );
@@ -162,8 +162,8 @@ body {
     width: 180px;
     height: 180px;
     border: 6px solid transparent;
-    border-top: 6px solid rgba(96, 165, 250, 0.8);
-    border-right: 6px solid rgba(96, 165, 250, 0.7);
+    border-top: 6px solid rgba(212, 212, 216, 0.7);
+    border-right: 6px solid rgba(212, 212, 216, 0.7);
     border-radius: 50%;
     animation: spin-outer 1s linear infinite;
 }
@@ -173,8 +173,8 @@ body {
     width: 160px;
     height: 160px;
     border: 5px solid transparent;
-    border-bottom: 5px solid rgba(147, 197, 253, 0.9);
-    border-left: 5px solid rgba(147, 197, 253, 0.8);
+    border-bottom: 5px solid rgba(161, 161, 170, 0.8);
+    border-left: 5px solid rgba(161, 161, 170, 0.8);
     border-radius: 50%;
     animation: spin-inner 0.8s linear infinite reverse;
 }
@@ -184,16 +184,16 @@ body {
     width: 120px;
     height: 120px;
     background: radial-gradient(circle, 
-        rgba(59, 130, 246, 0.2) 0%,
-        rgba(59, 130, 246, 0.5) 30%,
-        rgba(30, 64, 175, 0.6) 60%,
-        rgba(30, 64, 175, 0.8) 100%);
+        rgba(63, 63, 70, 0.2) 0%,
+        rgba(63, 63, 70, 0.5) 30%,
+        rgba(39, 39, 42, 0.6) 60%,
+        rgba(39, 39, 42, 0.8) 100%);
     border-radius: 50%;
     animation: pulse-center 1.5s ease-in-out infinite;
     box-shadow: 
-        0 0 40px rgba(59, 130, 246, 0.5),
-        inset 0 0 25px rgba(30, 64, 175, 0.3);
-    border: 3px solid rgba(59, 130, 246, 0.6);
+        0 0 40px rgba(161, 161, 170, 0.3),
+        inset 0 0 25px rgba(39, 39, 42, 0.3);
+    border: 3px solid rgba(161, 161, 170, 0.4);
 }
 
 .camera-ring-3 {
@@ -201,8 +201,8 @@ body {
     width: 140px;
     height: 140px;
     border: 4px solid transparent;
-    border-top: 4px solid rgba(59, 130, 246, 0.7);
-    border-bottom: 4px solid rgba(59, 130, 246, 0.5);
+    border-top: 4px solid rgba(113, 113, 122, 0.7);
+    border-bottom: 4px solid rgba(113, 113, 122, 0.7);
     border-radius: 50%;
     animation: spin-outer 0.7s linear infinite;
 }
@@ -212,8 +212,8 @@ body {
     width: 100px;
     height: 100px;
     border: 3px solid transparent;
-    border-left: 3px solid rgba(96, 165, 250, 1);
-    border-right: 3px solid rgba(96, 165, 250, 0.8);
+    border-left: 3px solid rgba(244, 244, 245, 0.9);
+    border-right: 3px solid rgba(244, 244, 245, 0.9);
     border-radius: 50%;
     animation: spin-inner 0.5s linear infinite reverse;
 }
@@ -223,15 +223,15 @@ body {
     width: 60px;
     height: 60px;
     background: radial-gradient(circle, 
-        rgba(59, 130, 246, 1) 0%,
-        rgba(30, 64, 175, 1) 50%,
-        rgba(30, 64, 175, 1) 100%);
+        rgba(244, 244, 245, 0.9) 0%,
+        rgba(161, 161, 170, 1) 50%,
+        rgba(63, 63, 70, 1) 100%);
     border-radius: 50%;
     animation: pulse-core 1s ease-in-out infinite alternate;
     box-shadow: 
-        0 0 50px rgba(59, 130, 246, 0.8),
-        inset 0 0 20px rgba(255, 255, 255, 0.3);
-    border: 2px solid rgba(147, 197, 253, 1);
+        0 0 50px rgba(255, 255, 255, 0.25),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(212, 212, 216, 0.6);
 }
 
 @keyframes pulse-core {
@@ -268,13 +268,13 @@ body {
 .slide-container {
     width: 100%;
     max-width: 1200px;
-    background: rgba(248, 250, 252, 0.95);
+    background: rgba(24, 24, 27, 0.96);
     border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(71, 85, 105, 0.15);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.05) inset;
     padding: 60px;
     text-align: center;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(148, 163, 184, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     position: relative;
     overflow: hidden;
     cursor: pointer;
@@ -283,6 +283,7 @@ body {
 
 .slide-container:hover {
     transform: translateY(-2px);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(255, 255, 255, 0.07) inset;
 }
 
 .slide-container::before {
@@ -292,7 +293,7 @@ body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
     animation: shimmer 4s infinite;
 }
 
@@ -323,10 +324,10 @@ body {
 
 .slide h1 {
     font-size: 3.5em;
-    color: #1e40af;
+    color: #ffffff;
     margin-bottom: 30px;
-    text-shadow: 0 4px 8px rgba(30, 64, 175, 0.2), 0 2px 4px rgba(59, 130, 246, 0.3);
-    background: linear-gradient(135deg, #1e40af, #3b82f6, #60a5fa, #93c5fd);
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(135deg, #ffffff, #e4e4e7, #a1a1aa);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -335,10 +336,10 @@ body {
 
 .slide h2 {
     font-size: 2.5em;
-    color: #059669;
+    color: #ffffff;
     margin-bottom: 25px;
-    text-shadow: 0 3px 6px rgba(5, 150, 105, 0.2), 0 1px 3px rgba(16, 185, 129, 0.3);
-    background: linear-gradient(135deg, #047857, #059669, #10b981, #34d399);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(135deg, #d4d4d8, #ffffff, #f4f4f5);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -347,7 +348,7 @@ body {
 
 .slide p {
     font-size: 1.4em;
-    color: #374151;
+    color: #d4d4d8;
     line-height: 1.6;
     margin-bottom: 20px;
 }
@@ -356,7 +357,7 @@ body {
     text-align: left;
     display: inline-block;
     font-size: 1.3em;
-    color: #4b5563;
+    color: #a1a1aa;
     line-height: 1.8;
     list-style: none;
 }
@@ -365,23 +366,30 @@ body {
     margin-bottom: 10px;
     position: relative;
     padding-left: 35px;
+    color: #a1a1aa;
 }
 
 .slide li::before {
-    content: '→';
+    content: '•';
     position: absolute;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    color: #2563eb;
+    color: #ffffff;
     font-weight: bold;
-    font-size: 1.5em;
-    text-shadow: 0 2px 4px rgba(37, 99, 235, 0.4), 0 0 8px rgba(59, 130, 246, 0.3);
-    background: linear-gradient(45deg, #3b82f6, #2563eb, #1d4ed8);
+    font-size: 1.4em;
+    background: linear-gradient(45deg, #ffffff, #d4d4d8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 1px 2px rgba(37, 99, 235, 0.3));
+    filter: drop-shadow(0 1px 3px rgba(255, 255, 255, 0.2));
+}
+
+.slide li strong {
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
 }
 
 /* Footer */
@@ -391,24 +399,41 @@ body {
     left: 0;
     right: 0;
     height: 70px;
-    background: rgba(30, 64, 175, 0.15);
+    background: rgba(9, 9, 11, 0.85);
     backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
     justify-content: center;
-    border-top: 1px solid rgba(59, 130, 246, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
     z-index: 1000;
 }
 
+.progress-bar-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #71717a, #d4d4d8, #ffffff);
+    width: 0%;
+    transition: width 0.4s ease;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
 .footer-text {
-    color: white;
+    color: #a1a1aa;
     font-size: 17px;
     font-weight: 600;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .footer-text .instructor {
-    color: white;
+    color: #e4e4e7;
     font-weight: 700;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
@@ -443,12 +468,12 @@ body {
         border-radius: 50%;
         background: conic-gradient(
             from 0deg,
-            #3b82f6 0deg,
-            #60a5fa 72deg,
-            #93c5fd 144deg,
-            #dbeafe 216deg,
-            #3b82f6 288deg,
-            #3b82f6 360deg
+            #27272a 0deg,
+            #3f3f46 72deg,
+            #71717a 144deg,
+            #a1a1aa 216deg,
+            #27272a 288deg,
+            #27272a 360deg
         );
     }
     

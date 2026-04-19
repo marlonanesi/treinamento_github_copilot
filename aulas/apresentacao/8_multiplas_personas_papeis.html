@@ -25,17 +25,18 @@
             <div class="slide active">
                 <h1>Copilot em Múltiplos Papéis</h1>
                 <h2>Como alternar personas para maximizar resultados no desenvolvimento</h2>
-                <p>Use personas claras: Dev, Arquiteto, SM, PO, QA, Frontend, Backend, UI/UX.</p>
+                <p>Use personas claras: Dev, Arquiteto, SM, PO, QA, Frontend, Backend, UI/UX - ou Agent Mode para orquestrar</p>
             </div>
 
             <!-- Slide 2 -->
             <div class="slide">
                 <h2>Por que alternar papéis?</h2>
                 <ul>
-                    <li>Refinamentos focados (negócio, técnico, qualidade, UX)</li>
-                    <li>Clareza de entregáveis e critérios de aceite</li>
-                    <li>Handoffs previsíveis entre módulos e times</li>
-                    <li>Prompts menores e objetivos → menos ruído, mais precisão</li>
+                    <li>Refinamentos focados: negócio, técnico, qualidade, UX</li>
+                    <li>Entregáveis claros com critérios de aceite explícitos</li>
+                    <li>Handoffs previsíveis, menos retrabalho</li>
+                    <li><strong>Você não precisa ser o PO ou o UX</strong> — basta usar a perspectiva deles pra validar o seu trabalho</li>
+                    <li><strong>Agent Mode:</strong> orquestra múltiplos papéis de forma autônoma</li>
                 </ul>
             </div>
 
@@ -44,10 +45,12 @@
                 <h2>Backend Developer (API/Domain)</h2>
                 <p><strong>Propósito:</strong> Regras de negócio, casos de uso, endpoints, performance.</p>
                 <p><strong>Entregáveis:</strong> Use case, schema, rota, logs, testes unitários.</p>
-                <pre><code>Papel: Você é um dev backend sênior em FastAPI.
-Objetivo: Implementar POST /projetos com validações e repositório mockado.
-Regras: Arquitetura em camadas, Pydantic estrito, logs estruturados.
-Done: 90%+ cobertura no domínio e use case, 201/400/422 mapeados.</code></pre>
+                <ul>
+                    <li><strong>Papel:</strong> Dev backend sênior em FastAPI</li>
+                    <li><strong>Objetivo:</strong> POST /projetos com validações e repositório mockado</li>
+                    <li><strong>Regras:</strong> Camadas, Pydantic estrito, logs estruturados</li>
+                    <li><strong>Done:</strong> 90%+ cobertura, 201/400/422 mapeados</li>
+                </ul>
             </div>
 
             <!-- Slide 4 -->
@@ -55,10 +58,12 @@ Done: 90%+ cobertura no domínio e use case, 201/400/422 mapeados.</code></pre>
                 <h2>Frontend Developer (UI/Integração)</h2>
                 <p><strong>Propósito:</strong> Componentes, estados, acessibilidade e integração com API.</p>
                 <p><strong>Entregáveis:</strong> Tela, estados de loading/erro, testes e2e/unit.</p>
-                <pre><code>Papel: Você é dev frontend React sênior.
-Objetivo: Tela de cadastro de projeto com validação e chamada à API.
-Regras: A11y, design tokens, testes RTL e mock de fetch.
-Done: Form funcional, testes passando, empty/error states cobertos.</code></pre>
+                <ul>
+                    <li><strong>Papel:</strong> Dev frontend React sênior</li>
+                    <li><strong>Objetivo:</strong> Tela de cadastro com validação e chamada à API</li>
+                    <li><strong>Regras:</strong> A11y, design tokens, testes RTL, mock de fetch</li>
+                    <li><strong>Done:</strong> Form funcional, testes passando, empty/error states</li>
+                </ul>
             </div>
 
             <!-- Slide 5 -->
@@ -66,86 +71,90 @@ Done: Form funcional, testes passando, empty/error states cobertos.</code></pre>
                 <h2>Arquiteto de Software</h2>
                 <p><strong>Propósito:</strong> Fronteiras, padrões, decisões (ADR) e diagramas.</p>
                 <p><strong>Entregáveis:</strong> C4 (nivel 2 em texto), ADR, guidelines de camadas.</p>
-                <pre><code>Papel: Arquiteto de software.
-Objetivo: Definir fronteiras (domain/app/infra/presentation) e integrações.
-Regras: Hexagonal, DTOs estáveis, idempotência nas integrações.
-Done: ADR com trade-offs + diagrama textual + checklist de qualidade.</code></pre>
+                <ul>
+                    <li><strong>Papel:</strong> Arquiteto de software</li>
+                    <li><strong>Objetivo:</strong> Fronteiras domain/app/infra/presentation</li>
+                    <li><strong>Regras:</strong> Hexagonal, DTOs estáveis, idempotência</li>
+                    <li><strong>Done:</strong> ADR com trade-offs, diagrama textual, checklist</li>
+                </ul>
             </div>
 
             <!-- Slide 6 -->
             <div class="slide">
-                <h2>Product Owner (Negócio)</h2>
-                <p><strong>Propósito:</strong> Refinamento de negócio, valor, critérios de aceite.</p>
-                <p><strong>Entregáveis:</strong> User stories, critérios Gherkin, métricas de sucesso.</p>
-                <pre><code>Papel: Você é PO.
-Objetivo: Refinar cadastro de projeto com personas, escopo e KPIs.
-Regras: Histórias INVEST, critérios de aceite em Gherkin.
-Done: Backlog priorizado, histórias claras, KPIs definidos.</code></pre>
+                <h2>Product Owner — visão de negócio</h2>
+                <p><strong>Propósito:</strong> Validar se a feature entrega valor antes de apresentar ao time.</p>
+                <p><strong>Quando usar:</strong> Dev pergunta "Como PO: isso faz sentido? Algum critério de aceite faltou?"</p>
+                <ul>
+                    <li><strong>Papel:</strong> Product Owner experiente</li>
+                    <li><strong>Contexto:</strong> [descreva a feature ou fluxo implementado]</li>
+                    <li><strong>Perguntas:</strong> Valor entregue? Critérios faltando? Riscos?</li>
+                    <li><strong>Done:</strong> Lista de gaps e sugestões de refinamento</li>
+                </ul>
             </div>
 
             <!-- Slide 7 -->
-            <div class="slide">
-                <h2>Scrum Master (Fluxo/Entrega)</h2>
-                <p><strong>Propósito:</strong> Facilitar planejamento, remover impedimentos, cadência.</p>
-                <p><strong>Entregáveis:</strong> Quebra de tarefas, dependências, riscos e Definition of Done.</p>
-                <pre><code>Papel: Scrum Master.
-Objetivo: Planejar sprint para “Cadastro de Projeto”.
-Saída: WBS, dependências, riscos, DoD (tests, lint, docs).
-Done: Plano visível, riscos mitigados, DoD acordado.</code></pre>
+            <div class=slide>
+                <h2>Scrum Master — antecipando riscos</h2>
+                <p><strong>Propósito:</strong> Mapear dependências e impedimentos antes de entrar na sprint.</p>
+                <p><strong>Quando usar:</strong> Dev com task complexa: “Como SM, quais riscos e dependências devo levantar?”</p>
+                <ul>
+                    <li><strong>Papel:</strong> Scrum Master experiente</li>
+                    <li><strong>Contexto:</strong> [descreva a task ou épico]</li>
+                    <li><strong>Perguntas:</strong> Dependências? Riscos técnicos/negócio? DoD?</li>
+                    <li><strong>Done:</strong> Riscos mapeados, dependências listadas, DoD sugerido</li>
+                </ul>
             </div>
 
             <!-- Slide 8 -->
             <div class="slide">
                 <h2>QA / Tester</h2>
                 <p><strong>Propósito:</strong> Estratégia de testes, pirâmide, casos e automação.</p>
-                <p><strong>Entregáveis:</strong> Plano de testes, cenários Gherkin, dados de teste, cobertura.</p>
-                <pre><code>Papel: QA.
-Objetivo: Definir testes do cadastro de projeto.
-Regras: Pirâmide (unit&gt;api&gt;e2e), dados sintéticos, contratos estáveis.
-Done: Casos mapeados, automação CI, métricas: cobertura e flakiness.</code></pre>
+                <p><strong>Quando usar:</strong> Definir cobertura antes de abrir PR ou entrar em staging.</p>
+                <ul>
+                    <li><strong>Papel:</strong> QA sênior</li>
+                    <li><strong>Objetivo:</strong> Cobrir cadastro de projeto (unit &gt; api &gt; e2e)</li>
+                    <li><strong>Regras:</strong> Dados sintéticos, contratos estáveis</li>
+                    <li><strong>Done:</strong> Casos mapeados, automação CI, cobertura definida</li>
+                </ul>
             </div>
 
             <!-- Slide 9 -->
             <div class="slide">
-                <h2>UI/UX Designer</h2>
-                <p><strong>Propósito:</strong> Jornada do usuário, fluxos, wireframes e heurísticas.</p>
-                <p><strong>Entregáveis:</strong> User journey, fluxo, wireframe checklist, copy.</p>
-                <pre><code>Papel: Designer UI/UX.
-Objetivo: Mapear jornada para cadastro e visualização de projetos.
-Saída: Fluxo (feliz/triste), rótulos, estados vazios, feedbacks.
-Done: Fluxo validado, acessibilidade e heurísticas de Nielsen atendidas.</code></pre>
+                <h2>UI/UX Designer — revisando o próprio flow</h2>
+                <p><strong>Propósito:</strong> Revisar flow antes de entregar ao time de design.</p>
+                <p><strong>Quando usar:</strong> Dev frontend: "Como UX, tem quebra? Heurística violada?"</p>
+                <ul>
+                    <li><strong>Papel:</strong> Designer UI/UX sênior</li>
+                    <li><strong>Contexto:</strong> [descreva o fluxo ou tela implementada]</li>
+                    <li><strong>Perguntas:</strong> Quebra? Fluxo triste coberto? Nielsen?</li>
+                    <li><strong>Done:</strong> Melhorias, gaps de a11y, sugestões de copy</li>
+                </ul>
             </div>
 
             <!-- Slide 10 -->
             <div class="slide">
-                <h2>Fluxograma + Mapa do Usuário (texto)</h2>
-                <pre><code>Fluxo (simplificado)
-Usuário → [Abrir Tela] → [Preencher Form] → [Validar] → [Enviar API]
-   ↳ erro validação → [Feedback Campo] → [Corrigir] → [Validar]
-   ↳ erro API       → [Mensagem Erro] → [Tentativa Novamente]
-   ↳ sucesso        → [Toast Sucesso] → [Navegar Detalhe]
-
-Mapa do Usuário
-Persona: Gerente
-Intenção: Cadastrar novo projeto
-Passos: Acessa &gt; Preenche &gt; Valida &gt; Envia &gt; Confere
-Dores: Campos confusos, erros tardios
-Ganho: Feedback imediato e salvamento rápido</code></pre>
+                <h2>Fluxograma + Mapa do Usuário</h2>
+                <p><strong>Output da persona UX</strong> — vira insumo pro próximo prompt.</p>
+                <p><strong>Formato texto</strong> — fácil de converter pra Mermaid ou wireframe.</p>
+                <ul>
+                    <li>Abrir → Preencher → Validar → Enviar API</li>
+                    <li>↳ erro → Feedback → Corrigir → Reenviar</li>
+                    <li>↳ ok → Toast Sucesso → Navegar Detalhe</li>
+                    <li><strong>Mapa:</strong> Gerente | Dores: campos confusos | Ganho: feedback rápido</li>
+                </ul>
             </div>
 
             <!-- Slide 11 -->
             <div class="slide">
                 <h2>Orquestração de Prompts (Sequência)</h2>
+                <p><strong>Cada saída vira entrada do próximo papel — handoffs claros, menos retrabalho.</strong></p>
                 <ul>
-                    <li>PO → histórias e critérios</li>
-                    <li>Arquiteto → fronteiras e ADR</li>
-                    <li>UX → jornada/fluxo/wireframe</li>
-                    <li>Backend → domínio/API</li>
-                    <li>Frontend → UI/integração</li>
-                    <li>QA → casos e automação</li>
-                    <li>SM → plano, riscos, DoD</li>
+                    <li>PO → histórias e critérios de aceite</li>
+                    <li>Arquiteto → fronteiras, ADR e diagramas</li>
+                    <li>UX → jornada, fluxo e wireframe</li>
+                    <li>Backend + Frontend → implementação</li>
+                    <li>QA + SM → testes, plano e DoD</li>
                 </ul>
-                <p>Há handoffs claros; cada saída vira entrada do próximo papel.</p>
             </div>
 
             <!-- Slide 12 -->
@@ -153,9 +162,9 @@ Ganho: Feedback imediato e salvamento rápido</code></pre>
                 <h2>Resumo</h2>
                 <ul>
                     <li>Defina persona, propósito e entregáveis por prompt</li>
-                    <li>Use critérios de aceite e Done verificáveis</li>
                     <li>Encadeie papéis para reduzir retrabalho</li>
-                    <li>Prompts menores, resultados melhores</li>
+                    <li><strong>Não precisa ser o PO, SM ou UX</strong> — use a perspectiva deles pra validar seu trabalho</li>
+                    <li>Agent Mode = orquestração automática dos papéis</li>
                 </ul>
             </div>
         </div>
@@ -163,6 +172,9 @@ Ganho: Feedback imediato e salvamento rápido</code></pre>
 
     <!-- Footer -->
     <footer class="footer">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
         <div class="footer-text">
             Instrutor: <span class="instructor">Marlon Anesi</span> | GitHub Copilot
         </div>
@@ -175,8 +187,12 @@ Ganho: Feedback imediato e salvamento rápido</code></pre>
 
         function showSlide(n) {
             slides[currentSlide].classList.remove('active');
+            slides[currentSlide].style.display = 'none';
             currentSlide = (n + totalSlides) % totalSlides;
             slides[currentSlide].classList.add('active');
+            slides[currentSlide].style.display = 'block';
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
         }
 
         function nextSlide() {
@@ -203,7 +219,8 @@ Ganho: Feedback imediato e salvamento rápido</code></pre>
             }
         });
 
-        // Initialize
+        // Initialize — força display:none em todos antes de mostrar o primeiro
+        slides.forEach(slide => slide.style.display = 'none');
         showSlide(0);
     </script>
 </body>
