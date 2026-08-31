@@ -14,8 +14,9 @@ Conteúdo prático com um microserviço real e arquitetura limpa:
 ![Docker](https://img.shields.io/badge/Docker-Ready-blue)
 ![DDD](https://img.shields.io/badge/Architecture-DDD-orange)
 
-• Curso na Udemy: https://www.udemy.com/course/curso-github-copilot/?referralCode=43974AB5FC936615A576  
-• Promoções e descontos do instrutor: https://cloudforall.com.br
+**Curso completo na Udemy com nosso cupom mensal dinâmico:**
+https://cloudforall.com.br/redirect/github-copilot-produtividade-mcp/
+
 
 ## 📦 O que você encontra aqui
 
